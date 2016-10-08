@@ -31,7 +31,8 @@ class PeakFlowUtils::RspecHelper
 private
 
   def dry_result
-    @dry_result ||= JSON.parse(`bundle exec rspec --dry-run --format json`)
+    require "json"
+    @dry_result ||= ::JSON.parse(`bundle exec rspec --dry-run --format json`)
   end
 
   def files

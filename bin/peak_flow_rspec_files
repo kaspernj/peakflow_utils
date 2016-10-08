@@ -2,11 +2,18 @@
 
 # This task detects and prints out the RSpec files for the current build group
 
-require "peak_flow_utils"
+require "#{File.dirname(__FILE__)}/../lib/peak_flow_utils"
+
+args = {}
+ARGV.each do |arg|
+  if (match = arg.match(/\A--(.+?)=(.+)\Z/))
+    args[match[1]] = match[2]
+  end
+end
 
 rspec_helper = PeakFlowUtils::RspecHelper.new(
-  groups: args[:groups].to_i,
-  group_number: args[:group_number].to_i
+  groups: args.fetch("groups").to_i,
+  group_number: args.fetch("group-number").to_i
 )
 
 print rspec_helper.group_files.join(" ")
