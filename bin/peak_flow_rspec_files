@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# This task detects and prints out the RSpec files for the current build group
+
+require "peak_flow_utils"
+
+rspec_helper = PeakFlowUtils::RspecHelper.new(
+  groups: args[:groups].to_i,
+  group_number: args[:group_number].to_i
+)
+
+print rspec_helper.group_files.join(" ")
