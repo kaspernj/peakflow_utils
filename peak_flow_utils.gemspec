@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.date = "2016-10-08"
   s.description = "Various utilities to help with building on PeakFlow"
   s.email = "k@spernj.org"
+  s.executables = ["peak_flow_rspec_files"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -28,6 +29,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bin/peak_flow_rspec_files",
     "lib/peak_flow_utils.rb",
     "lib/peak_flow_utils/rspec_helper.rb",
     "peak_flow_utils.gemspec",
