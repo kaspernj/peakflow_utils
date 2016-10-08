@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/peak_flow_utils.rb",
     "lib/peak_flow_utils/rspec_helper.rb",
+    "peak_flow_utils.gemspec",
     "spec/peak_flow_utils_spec.rb",
     "spec/spec_helper.rb"
   ]
