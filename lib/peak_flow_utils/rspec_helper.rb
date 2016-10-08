@@ -23,6 +23,11 @@ class PeakFlowUtils::RspecHelper
     @group_files = group_orders[@group_number - 1]
   end
 
+  def total_tests
+    files unless @total_tests
+    @total_tests
+  end
+
 private
 
   def dry_result
@@ -32,12 +37,15 @@ private
   def files
     return @files if @files
 
+    @total_tests = 0
+
     @files = []
     dry_result.fetch("examples").each do |example|
       file_path = example.fetch("file_path")
       file_path = file_path[2, file_path.length]
 
-      @files << file_path
+      @files << file_path unless @files.include?(file_path)
+      @total_tests += 1
     end
 
     @files
