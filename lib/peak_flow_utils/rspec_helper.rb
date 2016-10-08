@@ -20,7 +20,7 @@ class PeakFlowUtils::RspecHelper
       group_index = 0 if group_index >= group_orders.length
     end
 
-    @group_files = group_orders[@group_number]
+    @group_files = group_orders[@group_number - 1]
   end
 
 private
