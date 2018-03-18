@@ -1,4 +1,2 @@
-module PeakFlowUtils
-  module ApplicationHelper
-  end
+module PeakFlowUtils::ApplicationHelper
 end

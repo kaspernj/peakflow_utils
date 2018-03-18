@@ -1,4 +1,4 @@
-$:.push File.expand_path("lib", __dir__)
+$LOAD_PATH.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
 require "peak_flow_utils/version"
@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 5.0.0"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "redis", "3.3.5"
   s.add_development_dependency "rspec-rails", "3.7.2"
+  s.add_development_dependency "sidekiq", "5.1.1"
+  s.add_development_dependency "sqlite3", "1.3.13"
 end

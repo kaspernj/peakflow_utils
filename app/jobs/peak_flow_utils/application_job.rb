@@ -1,4 +1,2 @@
-module PeakFlowUtils
-  class ApplicationJob < ActiveJob::Base
-  end
+class PeakFlowUtils::ApplicationJob < ActiveJob::Base
 end
