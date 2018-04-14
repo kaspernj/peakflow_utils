@@ -1,4 +1,6 @@
-class PeakFlow::HandlerText < BazaModels::Model
+class PeakFlow::HandlerText < PeakFlowUtils::ApplicationRecord
+  establish_connection "peak_flow_utils"
+
   belongs_to :group, foreign_key: "group_id", class_name: "PeakFlow::Group"
   belongs_to :handler, foreign_key: "handler_id", class_name: "PeakFlow::Handler"
   belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlow::TranslationKey"

@@ -1,4 +1,6 @@
-class PeakFlowUtils::TranslationValue < BazaModels::Model
+class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
+  establish_connection "peak_flow_utils"
+
   belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlowUtils::TranslationKey"
 
   validates_presence_of :translation_key
