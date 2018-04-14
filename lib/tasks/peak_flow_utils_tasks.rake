@@ -1,4 +1,5 @@
-# desc "Explaining what the task does"
-# task :peak_flow_utils do
-#   # Task goes here
-# end
+namespace :peak_flow_utils do
+  task "parse_translations" => :environment do
+    raise "stub"
+  end
+end
