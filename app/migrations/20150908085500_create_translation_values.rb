@@ -1,4 +1,4 @@
-class CreateTranslationValues < ActiveRecord::Migration[5.1]
+class CreateTranslationValues < PeakFlowUtils::ApplicationMigration
   def change
     create_table :translation_values do |t|
       t.belongs_to :translation_key

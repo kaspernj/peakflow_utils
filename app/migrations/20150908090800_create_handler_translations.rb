@@ -1,4 +1,4 @@
-class CreateHandlerTranslations < ActiveRecord::Migration[5.1]
+class CreateHandlerTranslations < PeakFlowUtils::ApplicationMigration
   def change
     create_table :handler_translations do |t|
       t.belongs_to :handler

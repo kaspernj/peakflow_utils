@@ -1,6 +1,4 @@
 class PeakFlowUtils::TranslationKey < PeakFlowUtils::ApplicationRecord
-  establish_connection "peak_flow_utils"
-
   belongs_to :group, foreign_key: "group_id"
   belongs_to :handler, foreign_key: "handler_id"
 

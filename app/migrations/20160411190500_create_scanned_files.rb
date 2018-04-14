@@ -1,4 +1,4 @@
-class CreateScannedFiles < ActiveRecord::Migration[5.1]
+class CreateScannedFiles < PeakFlowUtils::ApplicationMigration
   def change
     create_table :scanned_files do |t|
       t.string :file_path
