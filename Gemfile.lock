@@ -3,6 +3,7 @@ PATH
   specs:
     peak_flow_utils (0.1.0)
       rails (>= 5.0.0)
+      service_pattern (>= 0.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -132,6 +133,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
+    service_pattern (0.0.3)
     sidekiq (5.1.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
