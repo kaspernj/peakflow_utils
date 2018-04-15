@@ -1,5 +1,11 @@
 require "peak_flow_utils/engine"
 
+require "array_enumerator"
+require "service_pattern"
+
 module PeakFlowUtils
-  autoload :RspecHelper, "#{File.dirname(__FILE__)}/peak_flow_utils/rspec_helper"
+  path = "#{File.dirname(__FILE__)}/peak_flow_utils"
+
+  autoload :RspecHelper, "#{path}/rspec_helper"
+  autoload :HandlerHelper, "#{path}/handler_helper"
 end
