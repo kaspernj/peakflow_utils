@@ -1,4 +1,4 @@
-class PeakFlowUtils::ModelInspector::ModelClassesService
+class PeakFlowUtils::ModelInspector
   attr_reader :clazz
   cattr_accessor :models_loaded
 
@@ -55,7 +55,7 @@ class PeakFlowUtils::ModelInspector::ModelClassesService
   end
 
   def snake_name
-    clazz.name.gsub("::", "/").split("/").map(&:camelize).join("/")
+    clazz.name.gsub("::", "/").split("/").map(&:underscore).join("/")
   end
 
   def class_key
@@ -82,7 +82,7 @@ class PeakFlowUtils::ModelInspector::ModelClassesService
   end
 
   def to_s
-    "<PeakFlowUtils::ModelInspector::ModelClassesService class-name: \"#{@clazz.name}\">"
+    "<PeakFlowUtils::ModelInspector class-name: \"#{@clazz.name}\">"
   end
 
   def inspect
@@ -94,16 +94,16 @@ class PeakFlowUtils::ModelInspector::ModelClassesService
     @scanned[clazz.name] = true
 
     clazz.subclasses.each do |subclass|
-      blk.call ::PeakFlowUtils::ModelInspector::ModelClassesService.new(subclass)
+      blk.call ::PeakFlowUtils::ModelInspector.new(subclass)
       find_subclasses(subclass, &blk)
     end
   end
 
   # Preloads all models for Rails app and all engines (if they aren't loaded, then they cant be inspected).
   def self.load_models
-    return false if PeakFlowUtils::ModelInspector::ModelClassesService.models_loaded
+    return false if PeakFlowUtils::ModelInspector.models_loaded
 
-    PeakFlowUtils::ModelInspector::ModelClassesService.models_loaded = true
+    PeakFlowUtils::ModelInspector.models_loaded = true
 
     load_models_for(Rails.root)
     engines.each do |engine|
