@@ -12,7 +12,7 @@ describe PeakFlowUtils::ErbInspector do
 
   describe "#files" do
     it "should find haml-files" do
-      expect(files.length).to eq 32
+      expect(files.length).to eq 45
     end
 
     it "should find haml-files" do

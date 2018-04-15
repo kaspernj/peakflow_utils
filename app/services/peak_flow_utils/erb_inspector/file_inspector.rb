@@ -47,6 +47,14 @@ class PeakFlowUtils::ErbInspector::FileInspector
     @args.fetch(:changed)
   end
 
+  def to_s
+    "<PeakFlowUtils::ErbInspector::FileInspector file_path=\"#{@file_path}\">"
+  end
+
+  def inspect
+    to_s
+  end
+
 private
 
   def parse_content_liquid(line_no, line, translations_found, yielder)
