@@ -55,7 +55,7 @@ class PeakFlowUtils::ModelInspector::ModelClassesService
   end
 
   def snake_name
-    clazz.name.gsub("::", "/").split("/").map { |part| part.camelize }.join("/")
+    clazz.name.gsub("::", "/").split("/").map(&:camelize).join("/")
   end
 
   def class_key

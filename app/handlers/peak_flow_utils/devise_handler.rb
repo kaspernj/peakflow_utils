@@ -1,5 +1,6 @@
+# rubocop:disable Metrics/LineLength
 class PeakFlowUtils::DeviseHandler < PeakFlowUtils::ApplicationHandler
-def enabled?
+  def enabled?
     ::Object.const_defined?(:Devise)
   end
 
@@ -122,3 +123,4 @@ private
     }
   end
 end
+# rubocop:enable Metrics/LineLength

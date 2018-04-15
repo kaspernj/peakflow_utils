@@ -1,7 +1,7 @@
 class PeakFlowUtils::RailsHandler < PeakFlowUtils::ApplicationHandler
   def groups
     ArrayEnumerator.new do |yielder|
-      groups = ["date_time", "errors", "helpers", "numbers", "support"]
+      groups = %w[date_time errors helpers numbers support]
 
       groups.each do |group|
         yielder << PeakFlowUtils::GroupService.new(

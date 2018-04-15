@@ -12,7 +12,7 @@ class PeakFlowUtils::ModelHandler < PeakFlowUtils::ApplicationHandler
 
   def translations_for_group(group)
     ArrayEnumerator.new do |yielder|
-      model_inspector = PeakFlowUtils::ModelInspector::ModelClassesService.model_classes.find { |model_inspector| model_inspector.clazz.name == group.name }
+      model_inspector = PeakFlowUtils::ModelInspector::ModelClassesService.model_classes.find { |model_inspector_i| model_inspector_i.clazz.name == group.name }
       raise "No inspector by that name: #{group.name}" unless model_inspector
 
       model_names(model_inspector).each { |translation| yielder << translation }
