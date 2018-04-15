@@ -30,7 +30,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
   def update_handlers
     @handlers_found ||= {}
 
-    PeakFlowUtils::Handler.all.each do |handler|
+    PeakFlowUtils::HandlersFinderService.execute!.result.each do |handler|
       debug "Updating handler: #{handler.name}"
       handler_model = PeakFlowUtils::Handler.find_or_initialize_by(identifier: handler.id)
       handler_model.update!(name: handler.name)
@@ -65,9 +65,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
     group.translations.each do |translation|
       debug "Updating translation: #{translation.key}"
 
-      translation_key = PeakFlowUtils::TranslationKey.find_or_initialize_by(key: translation.key)
-      translation_key.assign_attributes(group_id: group_model.id, handler_id: handler_model.id)
-      translation_key.save!
+      translation_key = PeakFlowUtils::TranslationKey.find_or_create_by!(key: translation.key)
 
       raise "KEY ERROR: #{translation_key.inspect}" unless translation_key.id.to_i.positive?
 

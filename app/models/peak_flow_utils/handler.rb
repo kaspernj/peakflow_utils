@@ -5,7 +5,7 @@ class PeakFlowUtils::Handler < PeakFlowUtils::ApplicationRecord
   validates_presence_of :name
 
   def at_handler
-    @at_handler ||= PeakFlowUtils::Handler.find(identifier)
+    @at_handler ||= PeakFlowUtils::HandlerHelper.find(identifier)
   end
 
   def to_param
