@@ -1,8 +1,8 @@
 class PeakFlowUtils::Handler < PeakFlowUtils::ApplicationRecord
-  has_many :groups, dependent: :destroy, foreign_key: "handler_id", class_name: "PeakFlowUtils::Group"
-  has_many :handler_translations, dependent: :destroy, foreign_key: "handler_id", class_name: "PeakFlowUtils::HandlerText"
+  has_many :groups, dependent: :destroy
+  has_many :handler_texts, dependent: :destroy
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   def at_handler
     @at_handler ||= PeakFlowUtils::HandlerHelper.find(identifier)

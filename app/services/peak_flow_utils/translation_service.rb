@@ -11,7 +11,7 @@ class PeakFlowUtils::TranslationService
     @key_show = data[:key_show]
     @default = data[:default]
 
-    raise "Dir wasn't valid: '#{@dir}'." unless @dir.present?
+    raise "Dir wasn't valid: '#{@dir}'." if @dir.blank?
   end
 
   def last_key

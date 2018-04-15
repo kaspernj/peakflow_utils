@@ -1,12 +1,12 @@
 class PeakFlowUtils::Group < PeakFlowUtils::ApplicationRecord
   attr_writer :at_group
 
-  belongs_to :handler, class_name: "PeakFlowUtils::Handler"
+  belongs_to :handler
 
-  has_many :handler_translations, dependent: :destroy, foreign_key: "group_id", class_name: "PeakFlowUtils::HandlerTranslation"
-  has_many :translation_keys, dependent: :destroy, foreign_key: "group_id", class_name: "PeakFlowUtils::TranslationKey"
+  has_many :handler_translations, dependent: :destroy
+  has_many :translation_keys, dependent: :destroy
 
-  validates_presence_of :name, :handler
+  validates :name, :handler, presence: true
 
   def at_handler
     @at_handler ||= handler.at_handler

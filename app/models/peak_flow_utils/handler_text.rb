@@ -1,9 +1,9 @@
 class PeakFlowUtils::HandlerText < PeakFlowUtils::ApplicationRecord
-  belongs_to :group, foreign_key: "group_id", class_name: "PeakFlowUtils::Group"
-  belongs_to :handler, foreign_key: "handler_id", class_name: "PeakFlowUtils::Handler"
-  belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlowUtils::TranslationKey"
+  belongs_to :group
+  belongs_to :handler
+  belongs_to :translation_key
 
-  validates_presence_of :handler, :translation_key
+  validates :handler, :translation_key, presence: true
 
   delegate :key, :last_key, to: :translation_key
   delegate :value, to: :translation, prefix: true

@@ -1,7 +1,7 @@
 class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
-  belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlowUtils::TranslationKey"
+  belongs_to :translation_key
 
-  validates_presence_of :translation_key
+  validates :translation_key, presence: true
 
   delegate :key, to: :translation_key
 
