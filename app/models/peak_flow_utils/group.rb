@@ -13,7 +13,7 @@ class PeakFlowUtils::Group < PeakFlowUtils::ApplicationRecord
   end
 
   def at_group
-    @at_group ||= PeakFlowUtils::GroupService.find_by_handler_and_id(at_handler, identifier)
+    @at_group ||= PeakFlowUtils::GroupService.find_by_handler_and_id(at_handler, identifier) # rubocop:disable Rails/DynamicFindBy
   end
 
   def to_param
