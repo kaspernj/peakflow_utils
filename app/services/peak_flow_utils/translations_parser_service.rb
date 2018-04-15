@@ -98,7 +98,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
 private
 
   def debug(message)
-    puts message.to_s if @debug # rubocop:disable Rails/Output
+    puts message.to_s if @debug
   end
 
   def execute_migrations

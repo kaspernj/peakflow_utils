@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe PeakFlowUtils::ModelInspector do
   let(:user_inspector) { PeakFlowUtils::ModelInspector.model_classes.find { |model_inspector| model_inspector.clazz == User } }
-  let(:model_classes) { PeakFlowUtils::ModelInspector.model_classes.map(&:clazz).select { |clazz| !clazz.name.end_with?("::Translation") } }
+  let(:model_classes) { PeakFlowUtils::ModelInspector.model_classes.map(&:clazz).reject { |clazz| clazz.name.end_with?("::Translation") } }
 
   it "#model_classes" do
     detected_classes = model_classes.to_a
@@ -13,7 +13,7 @@ describe PeakFlowUtils::ModelInspector do
 
   it "#engines" do
     expected = [ActionCable::Engine, ActionView::Railtie, MoneyRails::Engine, PeakFlowUtils::Engine]
-    expect(PeakFlowUtils::ModelInspector.engines.map(&:class).sort { |class1, class2| class1.name <=> class2.name }).to eq expected
+    expect(PeakFlowUtils::ModelInspector.engines.map(&:class).sort_by(&:name)).to eq expected
   end
 
   it "#class_key" do
@@ -37,6 +37,6 @@ describe PeakFlowUtils::ModelInspector do
   end
 
   it "#attributes" do
-    expect(user_inspector.attributes.map(&:name).to_a).to eq %w(id email password age)
+    expect(user_inspector.attributes.map(&:name).to_a).to eq %w[id email password age]
   end
 end

@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
@@ -30,8 +32,8 @@ Layout/MultilineOperationIndentation:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Metrics/AbcSize:
-  Max: 25
+# Metrics/AbcSize:
+#   Max: 25
 
 Metrics/BlockLength:
   Enabled: false
@@ -39,8 +41,8 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Max: 250
 
-Metrics/CyclomaticComplexity:
-  Max: 10
+# Metrics/CyclomaticComplexity:
+#   Max: 10
 
 Metrics/LineLength:
   Max: 160
@@ -72,6 +74,9 @@ Style/GuardClause:
   Enabled: false
 
 Style/LambdaCall:
+  Enabled: false
+
+Style/MultipleComparison:
   Enabled: false
 
 Style/RegexpLiteral:
