@@ -1,9 +1,7 @@
-class PeakFlow::HandlerText < PeakFlowUtils::ApplicationRecord
-  establish_connection "peak_flow_utils"
-
-  belongs_to :group, foreign_key: "group_id", class_name: "PeakFlow::Group"
-  belongs_to :handler, foreign_key: "handler_id", class_name: "PeakFlow::Handler"
-  belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlow::TranslationKey"
+class PeakFlowUtils::HandlerText < PeakFlowUtils::ApplicationRecord
+  belongs_to :group, foreign_key: "group_id", class_name: "PeakFlowUtils::Group"
+  belongs_to :handler, foreign_key: "handler_id", class_name: "PeakFlowUtils::Handler"
+  belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlowUtils::TranslationKey"
 
   validates_presence_of :handler, :translation_key
 
@@ -16,7 +14,7 @@ class PeakFlow::HandlerText < PeakFlowUtils::ApplicationRecord
   end
 
   def translation
-    @translation ||= PeakFlow::Translation.new(
+    @translation ||= PeakFlowUtils::Translation.new(
       key: key,
       dir: dir,
       full_path: full_path,

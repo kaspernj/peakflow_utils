@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "active-record-transactioner", ">= 0.0.7"
   s.add_runtime_dependency "service_pattern", ">= 0.0.3"
 
+  s.add_development_dependency "pry-rails", "0.3.6"
   s.add_development_dependency "redis", "3.3.5"
   s.add_development_dependency "rspec-rails", "3.7.2"
   s.add_development_dependency "sidekiq", "5.1.1"

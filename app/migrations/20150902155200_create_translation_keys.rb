@@ -1,14 +1,8 @@
 class CreateTranslationKeys < PeakFlowUtils::ApplicationMigration
   def change
-    create_table :translation_keys do |t|
-      t.belongs_to :handler
-      t.belongs_to :group
-      t.string :key
+    create_table :peak_flow_utils_translation_keys do |t|
+      t.string :key, index: true, null: false
       t.timestamps
     end
-
-    add_index :translation_keys, :key
-    add_index :translation_keys, :group_id
-    add_index :translation_keys, :handler_id
   end
 end

@@ -1,6 +1,4 @@
 class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
-  establish_connection "peak_flow_utils"
-
   belongs_to :translation_key, foreign_key: "translation_key_id", class_name: "PeakFlowUtils::TranslationKey"
 
   validates_presence_of :translation_key
@@ -12,7 +10,7 @@ class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
   end
 
   def handler_translation
-    @handler_translation ||= PeakFlowUtils::HandlerTranslation
+    @handler_translation ||= PeakFlowUtils::HandlerText
       .find_by(translation_key_id: translation_key_id)
   end
 

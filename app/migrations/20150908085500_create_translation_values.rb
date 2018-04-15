@@ -1,14 +1,13 @@
 class CreateTranslationValues < PeakFlowUtils::ApplicationMigration
   def change
-    create_table :translation_values do |t|
-      t.belongs_to :translation_key
+    create_table :peak_flow_utils_translation_values do |t|
+      t.references :translation_key, null: false
       t.string :file_path
-      t.string :locale
+      t.string :locale, index: true
       t.string :value
       t.timestamps
     end
 
-    add_index :translation_values, :translation_key_id
-    add_index :translation_values, :locale
+    add_foreign_key :peak_flow_utils_translation_values, :peak_flow_utils_translation_keys, column: "translation_key_id"
   end
 end

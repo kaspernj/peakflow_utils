@@ -73,7 +73,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
 
       @translation_keys_found[translation_key.id] = true
 
-      handler_translation = PeakFlowUtils::HandlerTranslation.find_or_initialize_by(
+      handler_translation = PeakFlowUtils::HandlerText.find_or_initialize_by(
         translation_key_id: translation_key.id,
         handler_id: handler_model.id,
         group_id: group_model.id
@@ -186,12 +186,12 @@ private
   def clean_up_not_found
     debug "Cleaning up not found"
 
-    @db.transaction do
+    PeakFlowUtils::ApplicationRecord.transaction do
       PeakFlowUtils::Handler
         .where.not(id: @handlers_found.keys)
         .destroy_all
 
-      PeakFlowUtils::HandlerTranslation
+      PeakFlowUtils::HandlerText
         .where.not(id: @handler_translations_found.keys)
         .destroy_all
 
