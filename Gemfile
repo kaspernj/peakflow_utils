@@ -9,7 +9,7 @@ group :development, :test do
   gem "factory_bot_rails", "4.8.2"
   gem "forgery", "0.7.0"
   gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
-  gem "money-rails", "1.9.0"
+  gem "money-rails", "1.13.3"
   gem "pry-rails", "0.3.9"
   gem "rails-controller-testing", "1.0.2"
   gem "rspec-rails", "3.7.2"
