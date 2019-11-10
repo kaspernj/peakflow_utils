@@ -11,7 +11,7 @@ group :development, :test do
   gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
   gem "money-rails", "1.9.0"
   gem "pry-rails", "0.3.9"
-  gem "rails-controller-testing", "1.0.2"
+  gem "rails-controller-testing", "1.0.4"
   gem "rspec-rails", "3.7.2"
   gem "rubocop", "0.53.0"
   # gem "scss_lint", "0.47.1"
