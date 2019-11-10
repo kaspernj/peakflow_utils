@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "array_enumerator", ">= 0.0.10"
   s.add_runtime_dependency "service_pattern", ">= 0.0.3"
 
-  s.add_development_dependency "redis", "3.3.5"
+  s.add_development_dependency "redis", "4.1.3"
   s.add_development_dependency "sidekiq", "5.1.1"
 end
