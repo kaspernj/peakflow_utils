@@ -12,7 +12,7 @@ group :development, :test do
   gem "money-rails", "1.13.3"
   gem "pry-rails", "0.3.9"
   gem "rails-controller-testing", "1.0.4"
-  gem "rspec-rails", "3.7.2"
+  gem "rspec-rails", "3.9.0"
   gem "rubocop", "0.53.0"
   # gem "scss_lint", "0.47.1"
   gem "sqlite3", "1.3.13", platform: :ruby
