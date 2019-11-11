@@ -5,7 +5,7 @@ group :development, :test do
   gem "best_practice_project", "0.0.10"
   gem "capybara", "2.13.0"
   gem "capybara-webkit", "1.15.1"
-  gem "database_cleaner", "1.6.2"
+  gem "database_cleaner", "1.7.0"
   gem "factory_bot_rails", "5.1.1"
   gem "forgery", "0.7.0"
   gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
