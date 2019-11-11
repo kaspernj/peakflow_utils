@@ -6,13 +6,25 @@ AllCops:
   Exclude:
     - db/data_schema.rb
     - db/schema.rb
+    - node_modules/**/*
     - spec/dummy/db/schema.rb
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
+
+Layout/AlignArguments:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
 
 Layout/EmptyLines:
   Enabled: false
@@ -28,6 +40,9 @@ Layout/MultilineMethodCallIndentation:
 
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+Layout/RescueEnsureAlignment:
+  Enabled: false
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
@@ -50,8 +65,48 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 50
 
+# Metrics/PerceivedComplexity:
+#   Max: 10
+
 # .find_each is not the same as .each
 Rails/FindEach:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+# This can make expectaions look weird: Prefer using be_rvm_in_build_config matcher over rvm_in_build_config?
+RSpec/PredicateMatcher:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -63,14 +118,14 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Enabled: false
 
-Style/FormatStringToken:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 # Will report offences for many places that are much more readable without using a guard clause
 Style/GuardClause:
+  Enabled: false
+
+Style/Lambda:
   Enabled: false
 
 Style/LambdaCall:
@@ -100,3 +155,6 @@ Style/SymbolArray:
 Style/TrivialAccessors:
   ExactNameMatch: true
   Enabled: true
+
+Style/WordArray:
+  Enabled: false

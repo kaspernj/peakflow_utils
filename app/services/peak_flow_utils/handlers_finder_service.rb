@@ -8,6 +8,7 @@ class PeakFlowUtils::HandlersFinderService < PeakFlowUtils::ApplicationService
 
       const_name_snake = "#{match[1]}_handler"
       next if const_name_snake == "application_handler"
+
       const_name_camel = const_name_snake.camelize
 
       handler = PeakFlowUtils::HandlerHelper.new(
