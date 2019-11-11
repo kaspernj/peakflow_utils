@@ -14,6 +14,7 @@ class PeakFlowUtils::ModelInspector
     ArrayEnumerator.new do |yielder|
       find_subclasses(ActiveRecord::Base) do |model_inspector|
         next if !model_inspector.clazz.name || @skip.include?(model_inspector.clazz.name)
+
         yielder << model_inspector
       end
     end
@@ -33,6 +34,7 @@ class PeakFlowUtils::ModelInspector
 
   def paperclip_attachments
     return unless ::Kernel.const_defined?("Paperclip")
+
     Paperclip::AttachmentRegistry.names_for(@clazz).each do |name|
       yield name
     end
@@ -91,6 +93,7 @@ class PeakFlowUtils::ModelInspector
 
   def self.find_subclasses(clazz, &blk)
     return if @scanned[clazz.name]
+
     @scanned[clazz.name] = true
 
     clazz.subclasses.each do |subclass|
@@ -121,10 +124,10 @@ class PeakFlowUtils::ModelInspector
   def self.load_models_for(root)
     Dir.glob("#{root}/app/models/**/*.rb") do |model_path|
       require model_path
-    rescue => e
-      $stderr.puts "Could not load model in #{model_path}"
-      $stderr.puts e.inspect
-      $stderr.puts e.backtrace
+    rescue StandardError => e
+      warn "Could not load model in #{model_path}"
+      warn e.inspect
+      warn e.backtrace
     end
   end
 end

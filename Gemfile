@@ -2,20 +2,22 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 group :development, :test do
-  gem "best_practice_project", "0.0.10"
-  gem "capybara", "2.13.0"
-  gem "capybara-webkit", "1.15.1"
-  gem "database_cleaner", "1.7.0"
-  gem "factory_bot_rails", "5.1.1"
-  gem "forgery", "0.7.0"
+  gem "best_practice_project"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "database_cleaner"
+  gem "factory_bot_rails"
+  gem "forgery"
   gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
-  gem "money-rails", "1.13.3"
-  gem "pry-rails", "0.3.9"
-  gem "rails-controller-testing", "1.0.4"
-  gem "rspec-rails", "3.9.0"
-  gem "rubocop", "0.76.0"
-  # gem "scss_lint", "0.47.1"
-  gem "sqlite3", "1.3.13", platform: :ruby
+  gem "money-rails"
+  gem "pry-rails"
+  gem "rails-controller-testing"
+  gem "rspec-rails"
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
+  gem "sqlite3", platform: :ruby
 end
 
 # Declare your gem's dependencies in peak_flow_utils.gemspec.
