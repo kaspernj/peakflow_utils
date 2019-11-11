@@ -1,5 +1,5 @@
 class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationService
-  def execute!
+  def execute
     path = File.realpath("#{File.dirname(__FILE__)}/../../migrations")
     create_schema_table unless schema_table_exists?
 
@@ -15,6 +15,8 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
       migration.migrate(:up)
       register_migration_migrated(version)
     end
+
+    ServicePattern::Response.new(success: true)
   end
 
 private

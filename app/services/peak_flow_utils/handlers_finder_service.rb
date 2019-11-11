@@ -1,5 +1,5 @@
 class PeakFlowUtils::HandlersFinderService < PeakFlowUtils::ApplicationService
-  def execute!
+  def execute
     handlers = []
 
     Dir.foreach("#{File.dirname(__FILE__)}/../../handlers/peak_flow_utils") do |file|
