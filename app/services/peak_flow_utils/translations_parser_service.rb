@@ -1,13 +1,15 @@
 class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationService
   attr_reader :db
 
-  def execute!
+  def execute
     PeakFlowUtils::DatabaseInitializerService.execute!
 
     cache_translations_in_dir(Rails.root.join("config", "locales"))
     cache_translations_in_handlers
 
     clean_up_not_found
+
+    ServicePattern::Response.new(success: true)
   end
 
   def with_transactioner
@@ -30,7 +32,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
   def update_handlers
     @handlers_found ||= {}
 
-    PeakFlowUtils::HandlersFinderService.execute!.result.each do |handler|
+    PeakFlowUtils::HandlersFinderService.execute!.each do |handler|
       debug "Updating handler: #{handler.name}"
       handler_model = PeakFlowUtils::Handler.find_or_initialize_by(identifier: handler.id)
       handler_model.update!(name: handler.name)

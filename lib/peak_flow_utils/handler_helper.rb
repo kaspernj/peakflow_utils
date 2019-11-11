@@ -2,7 +2,7 @@ class PeakFlowUtils::HandlerHelper
   delegate :translations, to: :instance
 
   def self.find(id)
-    PeakFlowUtils::HandlersFinderService.execute!.result.each do |handler|
+    PeakFlowUtils::HandlersFinderService.execute!.each do |handler|
       return handler if handler.id == id.to_s
     end
 
