@@ -162,11 +162,11 @@ private
 
   def points_from_type(type)
     if type == "feature" || type == "system"
-      points = 10
+      10
     elsif type == "controllers"
-      points = 3
+      3
     else
-      points = 1
+      1
     end
   end
 end
