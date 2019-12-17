@@ -1,3 +1,5 @@
+require "rails"
+
 module PeakFlowUtils; end
 
 class PeakFlowUtils::Engine < ::Rails::Engine
