@@ -157,7 +157,7 @@ private
 
   def type_from_path(file_path)
     match = file_path.match(/^spec\/(.+?)\//)
-    type = match[1] if match
+    match[1] if match
   end
 
   def points_from_type(type)
