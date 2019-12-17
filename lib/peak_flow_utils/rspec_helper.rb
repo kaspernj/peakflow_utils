@@ -1,8 +1,11 @@
 class PeakFlowUtils::RspecHelper
-  def initialize(args)
-    @groups = args.fetch(:groups)
-    @group_number = args.fetch(:group_number)
+  attr_reader :only_types
+
+  def initialize(groups:, group_number:, only_types: nil)
+    @groups = groups
+    @group_number = group_number
     @example_data_exists = File.exists?("spec/examples.txt")
+    @only_types = only_types
   end
 
   def example_data_exists?
@@ -142,9 +145,10 @@ private
       dry_result.fetch("examples").each do |example|
         file_path = example.fetch("file_path")
         file_path = file_path[2, file_path.length]
-
         type = type_from_path(file_path)
         points = points_from_type(type)
+
+        next if ignore_type?(type)
 
         result[file_path] = {examples: 0, path: file_path, points: 0, type: type} unless result.key?(file_path)
         result[file_path][:examples] += 1
@@ -153,6 +157,10 @@ private
 
       result
     end
+  end
+
+  def ignore_type?(type)
+    only_types && !only_types.include?(type)
   end
 
   def type_from_path(file_path)
