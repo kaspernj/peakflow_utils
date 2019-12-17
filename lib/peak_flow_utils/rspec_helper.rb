@@ -133,7 +133,7 @@ private
 
   def dry_result_command
     command = "bundle exec rspec --dry-run --format json"
-    command << " --tag #{tag}"
+    command << " --tag #{tag}" if tag
     command
   end
 
