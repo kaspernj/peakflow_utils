@@ -1,4 +1,4 @@
-require "peak_flow_utils/engine"
+require_relative "peak_flow_utils/engine"
 
 require "array_enumerator"
 require "service_pattern"
