@@ -131,13 +131,15 @@ class PeakFlowUtils::RspecHelper
 
 private
 
-  def dry_result
-    require "json"
-
+  def dry_result_command
     command = "bundle exec rspec --dry-run --format json"
     command << " --tag=#{tag}"
+    command
+  end
 
-    @dry_result ||= ::JSON.parse(`#{command}`)
+  def dry_result
+    require "json"
+    @dry_result ||= ::JSON.parse(`#{dry_result_command}`)
   end
 
   def dry_file(path)
