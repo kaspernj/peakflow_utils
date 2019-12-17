@@ -1,11 +1,12 @@
 class PeakFlowUtils::RspecHelper
-  attr_reader :only_types
+  attr_reader :only_types, :tag
 
-  def initialize(groups:, group_number:, only_types: nil)
+  def initialize(groups:, group_number:, only_types: nil, tag: nil)
     @groups = groups
     @group_number = group_number
     @example_data_exists = File.exists?("spec/examples.txt")
     @only_types = only_types
+    @tag = tag
   end
 
   def example_data_exists?
@@ -132,7 +133,11 @@ private
 
   def dry_result
     require "json"
-    @dry_result ||= ::JSON.parse(`bundle exec rspec --dry-run --format json`)
+
+    command = "bundle exec rspec --dry-run --format json"
+    command << " --tag=#{tag}"
+
+    @dry_result ||= ::JSON.parse(`#{command}`)
   end
 
   def dry_file(path)
