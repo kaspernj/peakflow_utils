@@ -4,7 +4,7 @@ class PeakFlowUtils::RspecHelper
   def initialize(groups:, group_number:, only_types: nil, tag: nil)
     @groups = groups
     @group_number = group_number
-    @example_data_exists = File.exists?("spec/examples.txt")
+    @example_data_exists = File.exist?("spec/examples.txt")
     @only_types = only_types
     @tag = tag
   end
@@ -14,7 +14,7 @@ class PeakFlowUtils::RspecHelper
   end
 
   def example_data
-    @examples_data ||= begin
+    @example_data ||= begin
       raw_data = File.read("spec/examples.txt")
 
       result = []
@@ -111,7 +111,7 @@ class PeakFlowUtils::RspecHelper
       file2_path = file2.fetch(:path)
 
       file1_data = example_file(file1_path) if example_data_exists?
-      file2_data = example_file(file2) if example_data_exists?
+      file2_data = example_file(file2_path) if example_data_exists?
 
       if file1_data && file2_data && file1_data.fetch(:seconds) != 0.0 && file2_data.fetch(:seconds) != 0.0
         value1 = file1_data[:seconds]
