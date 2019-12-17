@@ -4,7 +4,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
   def execute
     PeakFlowUtils::DatabaseInitializerService.execute!
 
-    cache_translations_in_dir(Rails.root.join("config", "locales"))
+    cache_translations_in_dir(Rails.root.join("config/locales"))
     cache_translations_in_handlers
 
     clean_up_not_found
@@ -22,7 +22,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
   end
 
   def self.database_path
-    @database_path ||= Rails.root.join("db", "peak_flow_utils.sqlite3").to_s
+    @database_path ||= Rails.root.join("db/peak_flow_utils.sqlite3").to_s
   end
 
   def database_path
