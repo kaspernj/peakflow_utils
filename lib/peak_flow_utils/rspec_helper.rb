@@ -7,9 +7,6 @@ class PeakFlowUtils::RspecHelper
     @example_data_exists = File.exist?("spec/examples.txt")
     @only_types = only_types
     @tags = tags
-
-    require "pry"
-    binding.pry
   end
 
   def example_data_exists?
