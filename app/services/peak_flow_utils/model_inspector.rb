@@ -122,7 +122,7 @@ class PeakFlowUtils::ModelInspector
 
   # Loads models for the given app-directory (Rails-root or engine).
   def self.load_models_for(root)
-    Dir.glob("#{root}/app/models/**/*.rb") do |model_path|
+    Dir.glob("#{root}/app/models/**/*.rb").sort.each do |model_path|
       require model_path
     rescue StandardError => e
       warn "Could not load model in #{model_path}"
