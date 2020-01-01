@@ -16,7 +16,7 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
       register_migration_migrated(version)
     end
 
-    ServicePattern::Response.new(success: true)
+    succeed!
   end
 
 private
