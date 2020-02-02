@@ -17,17 +17,3 @@ Metrics/CyclomaticComplexity:
 # Offense count: 1
 Metrics/PerceivedComplexity:
   Max: 22
-
-# Offense count: 9
-# Configuration parameters: CustomTransform, IgnoreMethods.
-RSpec/FilePath:
-  Exclude:
-    - 'spec/handlers/file_handler_spec.rb'
-    - 'spec/handlers/model_handler_spec.rb'
-    - 'spec/handlers/validations_handler_spec.rb'
-    - 'spec/services/attribute_service_spec.rb'
-    - 'spec/services/erb_inspector/file_inspector_spec.rb'
-    - 'spec/services/erb_inspector/translation_inspector_spec.rb'
-    - 'spec/services/erb_inspector_spec.rb'
-    - 'spec/services/model_inspector_spec.rb'
-    - 'spec/services/translations_parser_service_spec.rb'
