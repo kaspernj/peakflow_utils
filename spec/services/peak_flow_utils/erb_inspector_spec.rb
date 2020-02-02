@@ -12,7 +12,7 @@ describe PeakFlowUtils::ErbInspector do
 
   describe "#files" do
     it "finds the correct number of files" do
-      expect(files.length).to eq 45
+      expect(files.length).to eq 46
     end
 
     it "finds haml-files" do
