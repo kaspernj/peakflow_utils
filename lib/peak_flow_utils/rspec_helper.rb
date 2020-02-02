@@ -59,8 +59,6 @@ class PeakFlowUtils::RspecHelper
   def group_files
     return @group_files if @group_files
 
-    # Sort them so that they are sorted by file path in three groups so each group have an equal amount of controller specs, features specs and so on
-
     sorted_files.each do |file|
       file_path = file.fetch(:path)
       file_data = example_file(file_path) if example_data_exists?
@@ -105,6 +103,7 @@ class PeakFlowUtils::RspecHelper
     end
   end
 
+  # Sort them so that they are sorted by file path in three groups so each group have an equal amount of controller specs, features specs and so on
   def sorted_files
     files.values.sort do |file1, file2|
       file1_path = file1.fetch(:path)
@@ -123,6 +122,11 @@ class PeakFlowUtils::RspecHelper
         value2 = file2_data[:seconds]
       else
         value2 = file2.fetch(:points)
+      end
+
+      if value1 == value2
+        value2 = file1_path
+        value1 = file2_path
       end
 
       value2 <=> value1
