@@ -3,15 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 group :development, :test do
   gem "best_practice_project"
-  gem "capybara"
-  gem "capybara-webkit"
-  gem "database_cleaner"
-  gem "factory_bot_rails"
-  gem "forgery"
   gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
   gem "money-rails"
   gem "pry-rails"
-  gem "rails-controller-testing"
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-performance"
