@@ -16,7 +16,6 @@ PATH
       array_enumerator
       rails (>= 5.0.0)
       service_pattern
-      sqlite3
 
 GEM
   remote: https://rubygems.org/
