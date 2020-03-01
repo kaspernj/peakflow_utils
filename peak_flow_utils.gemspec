@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "active-record-transactioner"
   s.add_runtime_dependency "array_enumerator"
   s.add_runtime_dependency "service_pattern"
-  s.add_runtime_dependency "sqlite3"
 
   s.add_development_dependency "redis"
   s.add_development_dependency "sidekiq"
