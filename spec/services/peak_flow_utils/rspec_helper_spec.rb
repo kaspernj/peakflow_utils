@@ -64,18 +64,16 @@ describe PeakFlowUtils::RspecHelper do
 
       nemoa_rspec_output = JSON.parse(File.read("spec/services/peak_flow_utils/rspec_helper/nemoa_rspec_output.json"))
 
-      helpers.each do |helper|
-        expect(helper).to receive(:dry_result).and_return(nemoa_rspec_output)
-      end
+      expect(helpers).to all(receive(:dry_result).and_return(nemoa_rspec_output))
 
       file_groups = helpers.map { |helper| helper.__send__(:group_files) }
 
       file_groups.each_with_index do |file_group1, index1|
-        file_group1.each do |file_name1, file_data1|
+        file_group1.each do |file_name1|
           file_groups.each_with_index do |file_group2, index2|
             next if index1 == index2
 
-            file_group2.each do |file_name2, file_data2|
+            file_group2.each do |file_name2|
               raise "Found fine in both #{index1} and #{index2}: #{file_name1}" if file_name1 == file_name2
             end
           end
