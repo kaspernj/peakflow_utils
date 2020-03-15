@@ -18,4 +18,4 @@ rspec_helper = PeakFlowUtils::RspecHelper.new(
   tags: args["tags"]&.split(",")
 )
 
-print rspec_helper.group_files.map { |group_file| group_file.fetch(:path) }.join(" ")
+print rspec_helper.group_files.map { |group_file| "\"#{group_file.fetch(:path)}\"" }.join(" ")
