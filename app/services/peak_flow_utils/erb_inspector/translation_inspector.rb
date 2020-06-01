@@ -84,7 +84,7 @@ private
     key.delete_prefix!("_")
 
     # Remove '_controller' from controllers
-    key.delete_prefix!("_controller")
+    key.delete_suffix!("_controller")
 
     key
   end
