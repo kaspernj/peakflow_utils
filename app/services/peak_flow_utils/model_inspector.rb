@@ -1,5 +1,6 @@
 class PeakFlowUtils::ModelInspector
   attr_reader :clazz
+
   cattr_accessor :models_loaded
 
   # Yields a model-inspector for each model found in the application.

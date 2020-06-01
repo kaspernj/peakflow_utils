@@ -29,6 +29,9 @@ Layout/EmptyLines:
 Layout/EmptyLinesAroundArguments:
   Enabled: false
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
@@ -47,8 +50,20 @@ Layout/ParameterAlignment:
 Layout/RescueEnsureAlignment:
   Enabled: false
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
 
 # Metrics/AbcSize:
 #   Max: 25
@@ -118,12 +133,24 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Enabled: false
 
+Style/ExponentialNotation:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 # Will report offences for many places that are much more readable without using a guard clause
 Style/GuardClause:
   Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
 
 Style/Lambda:
   Enabled: false
@@ -148,6 +175,9 @@ Style/NilComparison:
 
 Style/SignalException:
   EnforcedStyle: only_raise
+
+Style/SlicingWithRange:
+  Enabled: true
 
 Style/SymbolArray:
   Enabled: false
