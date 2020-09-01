@@ -8,6 +8,8 @@ AllCops:
     - db/schema.rb
     - node_modules/**/*
     - spec/dummy/db/schema.rb
+  NewCops: enable
+  TargetRubyVersion: 2.5
 
 require:
   - rubocop-performance
@@ -58,6 +60,9 @@ Layout/SpaceInsideHashLiteralBraces:
 
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
+
+Lint/FloatComparison:
+  Enabled: false
 
 Lint/RaiseException:
   Enabled: true
@@ -124,6 +129,9 @@ RSpec/NestedGroups:
 RSpec/PredicateMatcher:
   Enabled: false
 
+Style/CaseLikeIf:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
@@ -131,6 +139,9 @@ Style/ConditionalAssignment:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/ExplicitBlockArgument:
   Enabled: false
 
 Style/ExponentialNotation:
