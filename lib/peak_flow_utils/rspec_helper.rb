@@ -118,7 +118,7 @@ class PeakFlowUtils::RspecHelper
         value1 = file1.fetch(:points)
       end
 
-      if file2_data && file2_data && file2_data.fetch(:seconds) != 0.0 && file2_data.fetch(:seconds) != 0.0
+      if file2_data && file1_data && file2_data.fetch(:seconds) != 0.0 && file2_data.fetch(:seconds) != 0.0
         value2 = file2_data[:seconds]
       else
         value2 = file2.fetch(:points)
