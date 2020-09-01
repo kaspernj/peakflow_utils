@@ -1,5 +1,6 @@
-# PeakFlowUtils
-Short description and motivation.
+# PeakflowUtils
+
+Various tools to use with www.peakflow.io.
 
 ## Usage
 How to use my plugin.
