@@ -20,8 +20,3 @@ Metrics/CyclomaticComplexity:
 # Configuration parameters: IgnoredMethods.
 Metrics/PerceivedComplexity:
   Max: 22
-
-# Offense count: 7
-# Configuration parameters: AllowSubject.
-RSpec/MultipleMemoizedHelpers:
-  Max: 9
