@@ -27,7 +27,7 @@ class PeakFlowUtils::ErbInspector::TranslationInspector
   end
 
   def global?
-    !relative? && !key.include?(".")
+    !relative? && key.exclude?(".")
   end
 
   def relative?

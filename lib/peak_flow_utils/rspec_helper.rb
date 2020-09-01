@@ -175,7 +175,7 @@ private
   end
 
   def ignore_type?(type)
-    only_types && !only_types.include?(type)
+    only_types&.exclude?(type)
   end
 
   def type_from_path(file_path)
