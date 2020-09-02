@@ -175,7 +175,7 @@ private
   end
 
   def ignore_type?(type)
-    only_types && only_types.exclude?(type) # rubocop:disable Style/SafeNavigation
+    only_types && !only_types.include?(type) # rubocop:disable Rails/NegateInclude:, Style/SafeNavigation
   end
 
   def type_from_path(file_path)

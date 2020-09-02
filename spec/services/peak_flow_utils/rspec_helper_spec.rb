@@ -23,6 +23,15 @@ describe PeakFlowUtils::RspecHelper do
     expect(ignore_system).to eq false
   end
 
+  describe "#ignore_type?" do
+    it "ignores types not given" do
+      helper = PeakFlowUtils::RspecHelper.new(groups: 1, group_number: 1, only_types: ["system"])
+
+      expect(helper.__send__(:ignore_type?, "system")).to eq false
+      expect(helper.__send__(:ignore_type?, "model")).to eq true
+    end
+  end
+
   describe "#sorted_files" do
     it "falls back to sort the files by name" do
       helper = PeakFlowUtils::RspecHelper.new(groups: 4, group_number: 2)
