@@ -184,7 +184,7 @@ GEM
       rubocop (~> 0.87)
     ruby-progressbar (1.10.1)
     service_pattern (0.0.7)
-    sidekiq (6.1.1)
+    sidekiq (6.1.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
