@@ -12,7 +12,7 @@ describe PeakFlowUtils::ModelInspector do
   end
 
   it "#engines" do
-    expected = [ActionCable::Engine, ActionView::Railtie, MoneyRails::Engine, PeakFlowUtils::Engine]
+    expected = [ActionCable::Engine, ActionView::Railtie, MoneyRails::Engine, PeakFlowUtils::Engine, Sidekiq::Rails]
     expect(PeakFlowUtils::ModelInspector.engines.map(&:class).sort_by(&:name)).to eq expected
   end
 
