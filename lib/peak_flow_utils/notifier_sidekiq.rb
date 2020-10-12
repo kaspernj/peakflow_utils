@@ -3,7 +3,7 @@ class PeakFlowUtils::NotifierSidekiq
     require "sidekiq"
 
     Sidekiq.configure_server do |config|
-      config.error_handlers << proc do |error, context|
+      config.error_handlers << proc do |error, _context|
         PeakFlowUtils::Notifier.notify(error: error)
       end
     end
