@@ -4,7 +4,10 @@ describe PeakFlowUtils::NotifierErrorParser do
   let(:environment) do
     {
       "REMOTE_ADDR" => "127.0.0.1",
-      "HTTP_USER_AGENT" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+      "HTTP_USER_AGENT" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
+      "SERVER_PORT" => 443,
+      "HTTP_HOST" => "www.example.com",
+      "REQUEST_URI" => "/users/5?first_name=Kasper"
     }
   end
 
@@ -38,6 +41,12 @@ describe PeakFlowUtils::NotifierErrorParser do
     it "uses the forwarded address if given" do
       environment["HTTP_X_FORWARDED_FOR"] = "10.0.0.5"
       expect(error_parser.remote_ip).to eq "10.0.0.5"
+    end
+  end
+
+  describe "#url" do
+    it "returns the url" do
+      expect(error_parser.url).to eq "asd"
     end
   end
 

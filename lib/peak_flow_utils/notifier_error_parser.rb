@@ -3,7 +3,7 @@ class PeakFlowUtils::NotifierErrorParser
 
   def initialize(backtrace:, environment:, error:)
     @backtrace = backtrace
-    @environment = environment
+    @environment = environment || {}
     @error = error
 
     detect_file_path_and_line_number
@@ -27,10 +27,21 @@ class PeakFlowUtils::NotifierErrorParser
   end
 
   def remote_ip
-    environment&.dig("HTTP_X_FORWARDED_FOR") || environment&.dig("REMOTE_ADDR")
+    environment["HTTP_X_FORWARDED_FOR"] || environment["REMOTE_ADDR"]
+  end
+
+  def url
+    return unless environment["REQUEST_URI"]
+
+    url = "http"
+    url << "s" if environment["SERVER_PORT"] == 443 || environment["rack.url_scheme"] == "https" || environment["HTTPS"] == "on"
+    url << "//"
+    url << environment["HTTP_HOST"]
+    url << environment["REQUEST_URI"]
+    url
   end
 
   def user_agent
-    environment&.dig("HTTP_USER_AGENT")
+    environment["HTTP_USER_AGENT"]
   end
 end
