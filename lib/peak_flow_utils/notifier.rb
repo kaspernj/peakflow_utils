@@ -35,7 +35,7 @@ class PeakFlowUtils::Notifier
       auth_token: auth_token,
       error: {
         backtrace: error.backtrace,
-        environment: environment,
+        environment: error_parser.cleaned_environment,
         error_class: error.class.name,
         file_path: error_parser.file_path,
         line_number: error_parser.line_number,

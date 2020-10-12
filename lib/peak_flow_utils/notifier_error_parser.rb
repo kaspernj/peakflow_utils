@@ -26,6 +26,16 @@ class PeakFlowUtils::NotifierErrorParser
     end
   end
 
+  def cleaned_environment
+    environment.reject do |key, _value|
+      key.start_with?("action_controller.") ||
+        key.start_with?("action_dispatch.") ||
+        key.start_with?("puma.") ||
+        key.start_with?("rack.") ||
+        key == "warden"
+    end
+  end
+
   def remote_ip
     environment["HTTP_X_FORWARDED_FOR"] || environment["REMOTE_ADDR"]
   end
