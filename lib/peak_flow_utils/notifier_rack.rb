@@ -6,7 +6,7 @@ class PeakFlowUtils::NotifierRack
 
   def call(env)
     @app.call(env)
-  rescue Exception => e
+  rescue Exception => e # rubocop:disable Lint/RescueException
     controller = env["action_controller.instance"]
     request = controller&.request
     parameters = request.GET.merge(request.POST)

@@ -7,6 +7,7 @@ class PeakFlowUtils::Notifier
 
   def self.current
     raise "No current notifier has been set" unless @current
+
     @current
   end
 
@@ -18,7 +19,7 @@ class PeakFlowUtils::Notifier
     @auth_token = auth_token
   end
 
-  def notify(error:, data: nil, environment: nil, parameters: nil)
+  def notify(error:, environment: nil, parameters: nil)
     error_parser = PeakFlowUtils::NotifierErrorParser.new(
       backtrace: error.backtrace,
       environment: environment,
