@@ -7,6 +7,6 @@ class PeakFlowUtils::NotifierRack
   def call(env)
     @app.call(env)
   rescue Exception => e
-    PeakFlowUtils::Notifier.report(environment: env, error: e)
+    PeakFlowUtils::Notifier.notify(environment: env, error: e)
   end
 end

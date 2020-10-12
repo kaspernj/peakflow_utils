@@ -9,6 +9,7 @@ module PeakFlowUtils
   autoload :Notifier, "#{path}/notifier"
   autoload :NotifierRack, "#{path}/notifier_rack"
   autoload :NotifierRails, "#{path}/notifier_rails"
+  autoload :NotifierResponse, "#{path}/notifier_response"
   autoload :NotifierSidekiq, "#{path}/notifier_sidekiq"
   autoload :RspecHelper, "#{path}/rspec_helper"
   autoload :HandlerHelper, "#{path}/handler_helper"
