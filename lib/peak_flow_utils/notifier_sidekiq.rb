@@ -4,7 +4,7 @@ class PeakFlowUtils::NotifierSidekiq
 
     Sidekiq.configure_server do |config|
       config.error_handlers << proc do |error, context|
-        PeakFlowUtils::Notifier.notify(error: error, data: {sidekiq: context})
+        PeakFlowUtils::Notifier.notify(error: error)
       end
     end
   end
