@@ -7,6 +7,16 @@ class PeakFlowUtils::NotifierRack
   def call(env)
     @app.call(env)
   rescue Exception => e
-    PeakFlowUtils::Notifier.notify(environment: env, error: e)
+    controller = env["action_controller.instance"]
+    request = controller&.request
+    parameters = request.GET.merge(request.POST)
+
+    PeakFlowUtils::Notifier.notify(
+      environment: env,
+      error: e,
+      parameters: parameters
+    )
+
+    raise e
   end
 end

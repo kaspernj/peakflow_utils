@@ -10,19 +10,28 @@ class PeakFlowUtils::Notifier
     @current
   end
 
-  def self.notify(error:, data: nil, environment: nil)
-    PeakFlowUtils::Notifier.current.notify(data: data, error: error)
+  def self.notify(*args)
+    PeakFlowUtils::Notifier.current.notify(*args)
   end
 
   def initialize(auth_token:)
     @auth_token = auth_token
   end
 
-  def notify(error:, data: nil, environment: nil)
+  def notify(error:, data: nil, environment: nil, parameters: nil)
+    error_parser = PeakFlowUtils::NotifierErrorParser.new(
+      backtrace: error.backtrace,
+      environment: environment,
+      error: error,
+      parameters: parameters
+    )
+
     uri = URI("https://www.peakflow.io/errors/reports")
 
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
+
+    binding.pry
 
     data = {
       auth_token: auth_token,
@@ -30,13 +39,13 @@ class PeakFlowUtils::Notifier
         backtrace: error.backtrace,
         environment: environment,
         error_class: error.class.name,
-        file_path: nil,
-        line_number: nil,
+        file_path: error_parser.file_path,
+        line_number: error_parser.line_number,
         message: error.message,
-        parameters: nil,
-        remote_ip: nil,
-        url: nil,
-        user_agent: nil
+        parameters: parameters,
+        remote_ip: error_parser.remote_ip,
+        url: error_parser.url,
+        user_agent: error_parser.user_agent
       }
     }
 
