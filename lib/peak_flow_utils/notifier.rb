@@ -31,8 +31,6 @@ class PeakFlowUtils::Notifier
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
 
-    binding.pry
-
     data = {
       auth_token: auth_token,
       error: {
