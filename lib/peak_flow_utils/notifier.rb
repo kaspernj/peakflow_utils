@@ -23,8 +23,7 @@ class PeakFlowUtils::Notifier
     error_parser = PeakFlowUtils::NotifierErrorParser.new(
       backtrace: error.backtrace,
       environment: environment,
-      error: error,
-      parameters: parameters
+      error: error
     )
 
     uri = URI("https://www.peakflow.io/errors/reports")
