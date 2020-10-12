@@ -9,7 +9,7 @@ class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationServi
 
     clean_up_not_found
 
-    ServicePattern::Response.new(success: true)
+    succeed!
   end
 
   def with_transactioner

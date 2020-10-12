@@ -20,6 +20,6 @@ class PeakFlowUtils::HandlersFinderService < PeakFlowUtils::ApplicationService
       handlers << handler if handler.instance.enabled?
     end
 
-    ServicePattern::Response.new(result: handlers)
+    succeed! handlers
   end
 end

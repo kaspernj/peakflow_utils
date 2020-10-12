@@ -1,4 +1,4 @@
-class PeakFlowUtils::Pings::SidekiqPings < PeakFlowUtils::ApplicationController
+class PeakFlowUtils::Pings::SidekiqPingsController < PeakFlowUtils::ApplicationController
   def create
     sidekiq_queue = Sidekiq::Queue.new
 

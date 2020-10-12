@@ -1,6 +1,6 @@
 class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationService
   def execute
-    path = File.realpath("#{File.dirname(__FILE__)}/../../migrations")
+    path = File.realpath("#{File.dirname(__FILE__)}/../../../lib/peak_flow_utils/migrations")
     create_schema_table unless schema_table_exists?
 
     Dir["#{path}/[0-9]*_*.rb"].sort.map do |filename|
@@ -16,7 +16,7 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
       register_migration_migrated(version)
     end
 
-    ServicePattern::Response.new(success: true)
+    succeed!
   end
 
 private
