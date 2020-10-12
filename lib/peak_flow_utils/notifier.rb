@@ -6,13 +6,11 @@ class PeakFlowUtils::Notifier
   end
 
   def self.current
-    raise "No current notifier has been set" unless @current
-
     @current
   end
 
   def self.notify(*args)
-    PeakFlowUtils::Notifier.current.notify(*args)
+    PeakFlowUtils::Notifier.current&.notify(*args)
   end
 
   def initialize(auth_token:)
