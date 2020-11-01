@@ -52,6 +52,6 @@ class PeakFlowUtils::Notifier
     response = https.request(request)
     response_data = JSON.parse(response.body)
 
-    PeakFlowUtils::NotifierResponse.new(url: response_data.fetch("url"))
+    PeakFlowUtils::NotifierResponse.new(url: response_data["url"]) # URL not always present so dont use fetch
   end
 end
