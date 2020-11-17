@@ -1,12 +1,9 @@
 class PeakFlowUtils::Notifier
+  cattr_reader :current
   attr_reader :auth_token
 
   def self.configure(auth_token:)
     @current = PeakFlowUtils::Notifier.new(auth_token: auth_token)
-  end
-
-  def self.current
-    @current
   end
 
   def self.notify(*args)
