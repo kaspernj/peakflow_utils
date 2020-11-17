@@ -129,6 +129,9 @@ RSpec/NestedGroups:
 RSpec/PredicateMatcher:
   Enabled: false
 
+RSpec/StubbedMock:
+  Enabled: false
+
 Style/CaseLikeIf:
   Enabled: false
 

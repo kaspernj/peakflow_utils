@@ -28,11 +28,7 @@ class PeakFlowUtils::NotifierErrorParser
 
   def cleaned_environment
     environment.reject do |key, _value|
-      key.start_with?("action_controller.") ||
-        key.start_with?("action_dispatch.") ||
-        key.start_with?("puma.") ||
-        key.start_with?("rack.") ||
-        key == "warden"
+      key.start_with?("action_controller.", "action_dispatch.", "puma.", "rack.") || key == "warden"
     end
   end
 
@@ -45,7 +41,7 @@ class PeakFlowUtils::NotifierErrorParser
 
     url = "http"
     url << "s" if environment["SERVER_PORT"] == 443 || environment["rack.url_scheme"] == "https" || environment["HTTPS"] == "on"
-    url << "//"
+    url << "://"
     url << environment["HTTP_HOST"]
     url << environment["REQUEST_URI"]
     url
