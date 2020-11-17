@@ -28,11 +28,7 @@ class PeakFlowUtils::NotifierErrorParser
 
   def cleaned_environment
     environment.reject do |key, _value|
-      key.start_with?("action_controller.") ||
-        key.start_with?("action_dispatch.") ||
-        key.start_with?("puma.") ||
-        key.start_with?("rack.") ||
-        key == "warden"
+      key.start_with?("action_controller.", "action_dispatch.", "puma.", "rack.") || key == "warden"
     end
   end
 
