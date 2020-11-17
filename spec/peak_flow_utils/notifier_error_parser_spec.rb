@@ -46,7 +46,7 @@ describe PeakFlowUtils::NotifierErrorParser do
 
   describe "#url" do
     it "returns the url" do
-      expect(error_parser.url).to eq "asd"
+      expect(error_parser.url).to eq "https://www.example.com/users/5?first_name=Kasper"
     end
   end
 
