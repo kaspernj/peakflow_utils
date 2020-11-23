@@ -66,7 +66,7 @@ class PeakFlowUtils::Notifier
   def error_message_from_response(response)
     message = "Couldn't report error to Peakflow (code #{response.code})"
 
-    if response["content-type"] == "application/json"
+    if response["content-type"]&.starts_with?("application/json")
       response_data = JSON.parse(response.body)
       message << ": #{response_data.fetch("errors").join(". ")}" if response_data["errors"]
     end
