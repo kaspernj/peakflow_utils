@@ -1,13 +1,20 @@
 class PeakFlowUtils::Notifier
-  cattr_reader :current
+  class NotConfiguredError < RuntimeError; end
+
   attr_reader :auth_token
 
   def self.configure(auth_token:)
     @current = PeakFlowUtils::Notifier.new(auth_token: auth_token)
   end
 
+  def self.current
+    raise PeakFlowUtils::Notifier::NotConfiguredError, "Hasn't been configured" unless @current
+
+    @current
+  end
+
   def self.notify(*args)
-    PeakFlowUtils::Notifier.current&.notify(*args)
+    PeakFlowUtils::Notifier.current.notify(*args)
   end
 
   def initialize(auth_token:)
