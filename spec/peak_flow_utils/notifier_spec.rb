@@ -4,6 +4,7 @@ describe PeakFlowUtils::Notifier do
   let(:notifier) { PeakFlowUtils::Notifier.new(auth_token: "stub") }
 
   before { reset_notifier_configuration }
+
   after { reset_notifier_configuration }
 
   def reset_notifier_configuration
