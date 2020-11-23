@@ -29,7 +29,7 @@ PeakFlowUtils::Notifier.configure(auth_token: "your-token")
 ### Reporting errors manually
 
 ```ruby
-PeakFlowUtils::Notifier.notify(error)
+PeakFlowUtils::Notifier.notify(error: error)
 ```
 
 ### Reporting Rails errors
