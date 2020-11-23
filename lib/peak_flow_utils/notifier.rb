@@ -1,4 +1,5 @@
 class PeakFlowUtils::Notifier
+  class FailedToReportError < RuntimeError; end
   class NotConfiguredError < RuntimeError; end
 
   attr_reader :auth_token
@@ -54,8 +55,22 @@ class PeakFlowUtils::Notifier
     request.body = JSON.generate(data)
 
     response = https.request(request)
+
+    raise FailedToReportError, error_message_from_response(response) unless response.code == "200"
+
     response_data = JSON.parse(response.body)
 
     PeakFlowUtils::NotifierResponse.new(url: response_data["url"]) # URL not always present so dont use fetch
+  end
+
+  def error_message_from_response(response)
+    message = "Couldn't report error to Peakflow (code #{response.code})"
+
+    if response["content-type"] == "application/json"
+      response_data = JSON.parse(response.body)
+      message << ": #{response_data.fetch("errors").join(". ")}" if response_data["errors"]
+    end
+
+    message
   end
 end
