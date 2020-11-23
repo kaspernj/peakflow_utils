@@ -50,7 +50,7 @@ describe PeakFlowUtils::Notifier do
           body: JSON.generate(
             url: "https://www.peakflow.io/something"
           ),
-          code: 200
+          code: "200"
         )
       )
 
@@ -65,7 +65,7 @@ describe PeakFlowUtils::Notifier do
         body: JSON.generate(
           errors: ["Test error", "Another error"]
         ),
-        code: 401
+        code: "401"
       )
       expect(fake_response).to receive(:[]).with("content-type").and_return("application/json")
 
