@@ -3,7 +3,12 @@
 Various tools to use with www.peakflow.io.
 
 ## Usage
-How to use my plugin.
+
+### Reporting errors manually
+
+```ruby
+PeakFlowUtils::Notifier.notify(error)
+```
 
 ## Installation
 Add this line to your application's Gemfile:
