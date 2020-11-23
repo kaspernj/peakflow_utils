@@ -19,12 +19,31 @@ Or install it yourself as:
 $ gem install peak_flow_utils
 ```
 
+Add this to `config/peakflow.rb`:
+```ruby
+PeakFlowUtils::Notifier.configure(auth_token: "your-token")
+```
+
 ## Usage
 
 ### Reporting errors manually
 
 ```ruby
 PeakFlowUtils::Notifier.notify(error)
+```
+
+### Reporting Rails errors
+
+Add this to `config/peakflow.rb`:
+```ruby
+PeakFlowUtils::NotifierRails.configure
+```
+
+### Reporting Sidekiq errors in Rails:
+
+Add this to `config/peakflow.rb`:
+```ruby
+PeakFlowUtils::NotifierSidekiq.configure
 ```
 
 ## Contributing
