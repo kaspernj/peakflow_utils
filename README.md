@@ -2,14 +2,6 @@
 
 Various tools to use with www.peakflow.io.
 
-## Usage
-
-### Reporting errors manually
-
-```ruby
-PeakFlowUtils::Notifier.notify(error)
-```
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -25,6 +17,14 @@ $ bundle
 Or install it yourself as:
 ```bash
 $ gem install peak_flow_utils
+```
+
+## Usage
+
+### Reporting errors manually
+
+```ruby
+PeakFlowUtils::Notifier.notify(error)
 ```
 
 ## Contributing
