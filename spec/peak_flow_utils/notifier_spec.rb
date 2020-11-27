@@ -48,6 +48,10 @@ describe PeakFlowUtils::Notifier do
         instance_double(
           Net::HTTPResponse,
           body: JSON.generate(
+            bug_report_id: 451,
+            bug_report_instance_id: 452,
+            project_id: 453,
+            project_slug: "test-project",
             url: "https://www.peakflow.io/something"
           ),
           code: "200"
@@ -56,7 +60,13 @@ describe PeakFlowUtils::Notifier do
 
       response = notifier.notify(error: sample_error)
 
-      expect(response.url).to eq "https://www.peakflow.io/something"
+      expect(response).to have_attributes(
+        bug_report_id: 451,
+        bug_report_instance_id: 452,
+        project_id: 453,
+        project_slug: "test-project",
+        url: "https://www.peakflow.io/something"
+      )
     end
 
     it "raises an error if peakflow rejects" do

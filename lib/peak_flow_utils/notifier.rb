@@ -60,7 +60,14 @@ class PeakFlowUtils::Notifier
 
     response_data = JSON.parse(response.body)
 
-    PeakFlowUtils::NotifierResponse.new(url: response_data["url"]) # URL not always present so dont use fetch
+    # Data not always present so dont use fetch
+    PeakFlowUtils::NotifierResponse.new(
+      bug_report_id: response_data["bug_report_id"],
+      bug_report_instance_id: response_data["bug_report_instance_id"],
+      project_id: response_data["project_id"],
+      project_slug: response_data["project_slug"],
+      url: response_data["url"]
+    )
   end
 
   def error_message_from_response(response)
