@@ -6,7 +6,7 @@ describe PeakFlowUtils::ValidationsHandler do
   let(:blank_email_translation) { user_group.translations.find { |translation| translation.key.include? "email.blank" } }
 
   it "#groups" do
-    expect(validations_handler.groups.to_a.length).to eq 12
+    expect(validations_handler.groups.to_a.length).to eq 7
   end
 
   describe "#translations_for_group" do
