@@ -1,2 +1,0 @@
-module PeakFlowUtils::ApplicationHelper
-end
