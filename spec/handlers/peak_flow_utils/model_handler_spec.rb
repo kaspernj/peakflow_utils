@@ -9,7 +9,7 @@ describe PeakFlowUtils::ModelHandler do
   let(:role_translation_keys) { role_group.translations.map(&:key).to_a }
 
   it "#groups" do
-    expect(groups.length).to eq 12
+    expect(groups.length).to eq 7
   end
 
   describe "#translations_for_group" do
