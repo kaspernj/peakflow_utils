@@ -8,11 +8,7 @@ describe "peak flow utils - postgres connections" do
 
   it "counts the number of live postgres connections" do
     expect_any_instance_of(ActiveRecord::ConnectionAdapters::SQLite3Adapter).to receive(:execute).and_return(
-      [
-        {
-          "connections_count" => 5
-        }
-      ]
+      [{"connections_count" => 5}]
     )
 
     headers = {
