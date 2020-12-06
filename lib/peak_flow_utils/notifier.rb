@@ -9,7 +9,7 @@ class PeakFlowUtils::Notifier
   end
 
   def self.current
-    raise PeakFlowUtils::Notifier::NotConfiguredError, "Hasn't been configured" unless @current
+    raise PeakFlowUtils::Notifier::NotConfiguredError, "Hasn't been configured" if !@current && Rails.env.test?
 
     @current
   end
