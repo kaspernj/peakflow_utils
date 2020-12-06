@@ -7,9 +7,13 @@ describe "peak flow utils - postgres connections" do
   end
 
   it "counts the number of live postgres connections" do
-    expect_any_instance_of(ActiveRecord::ConnectionAdapters::SQLite3Adapter).to receive(:execute).and_return([{
-      "connections_count" => 5
-    }])
+    expect_any_instance_of(ActiveRecord::ConnectionAdapters::SQLite3Adapter).to receive(:execute).and_return(
+      [
+        {
+          "connections_count" => 5
+        }
+      ]
+    )
 
     headers = {
       "HTTP_AUTHORIZATION" => ActionController::HttpAuthentication::Basic.encode_credentials("test-pings", "test-pings-password")
