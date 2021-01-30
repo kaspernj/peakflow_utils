@@ -147,7 +147,15 @@ private
 
   def dry_result
     require "json"
-    @dry_result ||= ::JSON.parse(`#{dry_result_command}`)
+
+    output = `#{dry_result_command}`
+
+    json_opening_brace_positon = output.index('{')
+    json_closing_brace_positon = output.rindex('}')
+
+    json_output = output[json_opening_brace_positon..json_closing_brace_positon]
+
+    @dry_result ||= ::JSON.parse(json_output)
   end
 
   def dry_file(path)
