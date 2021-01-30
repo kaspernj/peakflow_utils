@@ -135,19 +135,20 @@ class PeakFlowUtils::RspecHelper
 
 private
 
-  def dry_result_command
-    command = "bundle exec rspec --dry-run --format json"
-
-    tags&.each do |tag|
-      command << " --tag #{tag}"
-    end
-
-    command
-  end
-
   def dry_result
-    require "json"
-    @dry_result ||= ::JSON.parse(`#{dry_result_command}`)
+    @dry_result ||= begin
+      require "json"
+      require "rspec/core"
+
+      output_capture = StringIO.new
+      RSpec::Core::Runner.run(rspec_options, $stderr, output_capture)
+
+      result = ::JSON.parse(output_capture.string)
+
+      raise "No examples were found" if result.fetch("examples").empty?
+
+      result
+    end
   end
 
   def dry_file(path)
@@ -178,11 +179,6 @@ private
     only_types && !only_types.include?(type) # rubocop:disable Rails/NegateInclude:, Style/SafeNavigation
   end
 
-  def type_from_path(file_path)
-    match = file_path.match(/^spec\/(.+?)\//)
-    match[1] if match
-  end
-
   def points_from_type(type)
     if type == "feature" || type == "system"
       10
@@ -191,5 +187,23 @@ private
     else
       1
     end
+  end
+
+  def rspec_options
+    rspec_options = ["--dry-run", "--format", "json"]
+
+    tags&.each do |tag|
+      rspec_options += ["--tag", tag]
+    end
+
+    # Add the folder with all the specs, which is required when running programmatically
+    rspec_options << "spec"
+
+    rspec_options
+  end
+
+  def type_from_path(file_path)
+    match = file_path.match(/^spec\/(.+?)\//)
+    match[1] if match
   end
 end
