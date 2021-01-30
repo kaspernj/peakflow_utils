@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 group :development, :test do
   gem "best_practice_project"
-  gem "globalize", git: "https://github.com/ma3tk/globalize.git", branch: "feature/update-rails-5-2"
+  gem "globalize"
   gem "money-rails"
   gem "pry-rails"
   gem "rspec-rails"
