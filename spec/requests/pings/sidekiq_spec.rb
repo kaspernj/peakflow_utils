@@ -15,10 +15,10 @@ describe "peak flow utils - postgres connections" do
 
     result = JSON.parse(response.body)
 
-    expect(result).to eq(
+    expect(result).to match(
       "check_json_status" => "OK",
-      "latency" => 0,
-      "queue_size" => 0
+      "latency" => instance_of(Float),
+      "queue_size" => instance_of(Integer)
     )
   end
 end
