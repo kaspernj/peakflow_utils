@@ -2,7 +2,7 @@
 
 # This task detects and prints out the RSpec files for the current build group
 
-require "#{File.dirname(__FILE__)}/../lib/peak_flow_utils"
+require "#{__dir__}/../lib/peak_flow_utils"
 
 args = {}
 ARGV.each do |arg|

@@ -1,6 +1,6 @@
 class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationService
   def execute
-    path = File.realpath("#{File.dirname(__FILE__)}/../../../lib/peak_flow_utils/migrations")
+    path = File.realpath("#{__dir__}/../../../lib/peak_flow_utils/migrations")
     create_schema_table unless schema_table_exists?
 
     Dir["#{path}/[0-9]*_*.rb"].sort.map do |filename|
@@ -22,7 +22,7 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
 private
 
   def create_schema_table
-    PeakFlowUtils::ApplicationRecord.connection.execute("CREATE TABLE schema_migrations (version VARCHAT)")
+    PeakFlowUtils::ApplicationRecord.connection.execute("CREATE TABLE schema_migrations (version VARCHAR)")
   end
 
   def register_migration_migrated(version)

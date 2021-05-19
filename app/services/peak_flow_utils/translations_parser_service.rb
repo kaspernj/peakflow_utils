@@ -107,7 +107,7 @@ private
     require "baza_migrations"
 
     executor = BazaMigrations::MigrationsExecutor.new(db: @db)
-    executor.add_dir "#{File.dirname(__FILE__)}/../../db/baza_translations_migrations"
+    executor.add_dir "#{__dir__}/../../db/baza_translations_migrations"
     executor.execute_migrations
   end
 

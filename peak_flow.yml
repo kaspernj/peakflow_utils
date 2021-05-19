@@ -8,6 +8,9 @@ services:
     image: redis:5.0.7
     expose:
       - 6379
+before_script:
+  - bundle exec rails db:test:reset
+  - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exists?('spec/dummy/db/peak_flow_utils.sqlite3')"
 script:
   - bundle exec rspec
   - bundle exec rake best_practice_project:run
