@@ -2,7 +2,7 @@ class PeakFlowUtils::HandlersFinderService < PeakFlowUtils::ApplicationService
   def execute
     handlers = []
 
-    Dir.foreach("#{File.dirname(__FILE__)}/../../handlers/peak_flow_utils") do |file|
+    Dir.foreach("#{__dir__}/../../handlers/peak_flow_utils") do |file|
       match = file.match(/\A(.+)_handler\.rb\Z/)
       next unless match
 
