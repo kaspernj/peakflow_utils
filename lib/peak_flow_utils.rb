@@ -4,8 +4,8 @@ require "array_enumerator"
 require "service_pattern"
 
 module PeakFlowUtils
-  path = "#{File.dirname(__FILE__)}/peak_flow_utils"
-  models_path = "#{File.dirname(__FILE__)}/peak_flow_utils/models"
+  path = "#{__dir__}/peak_flow_utils"
+  models_path = "#{__dir__}/peak_flow_utils/models"
 
   autoload :Notifier, "#{path}/notifier"
   autoload :NotifierErrorParser, "#{path}/notifier_error_parser"
