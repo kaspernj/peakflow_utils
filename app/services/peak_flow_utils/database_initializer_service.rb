@@ -22,7 +22,7 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
 private
 
   def create_schema_table
-    PeakFlowUtils::ApplicationRecord.connection.execute("CREATE TABLE schema_migrations (version VARCHAT)")
+    PeakFlowUtils::ApplicationRecord.connection.execute("CREATE TABLE schema_migrations (version VARCHAR)")
   end
 
   def register_migration_migrated(version)
