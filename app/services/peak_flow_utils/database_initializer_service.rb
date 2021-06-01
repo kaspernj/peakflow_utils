@@ -1,5 +1,5 @@
 class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationService
-  def execute
+  def perform
     path = File.realpath("#{__dir__}/../../../lib/peak_flow_utils/migrations")
     create_schema_table unless schema_table_exists?
 

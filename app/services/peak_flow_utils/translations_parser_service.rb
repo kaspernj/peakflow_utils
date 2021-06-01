@@ -1,7 +1,7 @@
 class PeakFlowUtils::TranslationsParserService < PeakFlowUtils::ApplicationService
   attr_reader :db
 
-  def execute
+  def perform
     PeakFlowUtils::DatabaseInitializerService.execute!
 
     cache_translations_in_dir(Rails.root.join("config/locales"))
@@ -103,7 +103,7 @@ private
     puts message.to_s if @debug # rubocop:disable Rails/Output
   end
 
-  def execute_migrations
+  def perform_migrations
     require "baza_migrations"
 
     executor = BazaMigrations::MigrationsExecutor.new(db: @db)
