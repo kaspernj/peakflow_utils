@@ -5,7 +5,7 @@ PATH
       active-record-transactioner
       array_enumerator
       rails (>= 5.0.0)
-      service_pattern
+      service_pattern (>= 1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -198,7 +198,7 @@ GEM
       rubocop (~> 0.87)
       rubocop-ast (>= 0.7.1)
     ruby-progressbar (1.11.0)
-    service_pattern (0.0.8)
+    service_pattern (1.0.0)
     sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
