@@ -37,6 +37,23 @@ describe PeakFlowUtils::Notifier do
     end
   end
 
+  describe "#current_parameters" do
+    it "registers parameters given through #with_parameters" do
+      PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Kasper"}]) do
+        PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Christina"}]) do
+          parameters = PeakFlowUtils::Notifier.current_parameters
+
+          expect(parameters).to eq(
+            people: [
+              {first_name: "Kasper"},
+              {first_name: "Christina"}
+            ]
+          )
+        end
+      end
+    end
+  end
+
   describe "#notify" do
     it "raises an error if not configured" do
       expect { PeakFlowUtils::Notifier.notify(error: "something") }

@@ -64,6 +64,9 @@ Lint/DeprecatedOpenSSLConstant:
 Lint/FloatComparison:
   Enabled: false
 
+Lint/MissingSuper:
+  Enabled: false
+
 Lint/RaiseException:
   Enabled: true
 
