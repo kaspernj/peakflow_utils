@@ -14,8 +14,41 @@ class PeakFlowUtils::Notifier
     @current
   end
 
+  def self.current_parameters(parameters: nil)
+    hashes = PeakFlowUtils::Notifier.current_parameters_hashes
+    hashes << parameters if parameters
+
+    PeakFlowUtils::DeepMerger.execute!(hashes: hashes)
+  end
+
+  def self.current_parameters_hashes
+    hashes = []
+
+    Thread.current[:peakflow_utils] ||= {}
+    Thread.current[:peakflow_utils].dig(:notifier, :with_parameters)&.each_value do |more_parameters|
+      hashes << more_parameters
+    end
+
+    hashes
+  end
+
   def self.notify(*args)
     PeakFlowUtils::Notifier.current.notify(*args)
+  end
+
+  def self.with_parameters(parameters)
+    random_id = SecureRandom.hex(16)
+
+    Thread.current[:peakflow_utils] ||= {}
+    Thread.current[:peakflow_utils][:notifier] ||= {}
+    Thread.current[:peakflow_utils][:notifier][:with_parameters] ||= {}
+    Thread.current[:peakflow_utils][:notifier][:with_parameters][random_id] = parameters
+
+    begin
+      yield
+    ensure
+      Thread.current[:peakflow_utils][:notifier][:with_parameters].delete(random_id)
+    end
   end
 
   def initialize(auth_token:)
@@ -28,6 +61,8 @@ class PeakFlowUtils::Notifier
       environment: environment,
       error: error
     )
+
+    merged_parameters = PeakFlowUtils::Notifier.current_parameters(parameters: parameters)
 
     uri = URI("https://www.peakflow.io/errors/reports")
 
@@ -43,7 +78,7 @@ class PeakFlowUtils::Notifier
         file_path: error_parser.file_path,
         line_number: error_parser.line_number,
         message: error.message,
-        parameters: parameters,
+        parameters: merged_parameters,
         remote_ip: error_parser.remote_ip,
         url: error_parser.url,
         user_agent: error_parser.user_agent
