@@ -5,7 +5,7 @@ PATH
       active-record-transactioner
       array_enumerator
       rails (>= 5.0.0)
-      service_pattern (>= 1.0.0)
+      service_pattern (>= 1.0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -198,7 +198,7 @@ GEM
       rubocop (~> 0.87)
       rubocop-ast (>= 0.7.1)
     ruby-progressbar (1.11.0)
-    service_pattern (1.0.2)
+    service_pattern (1.0.5)
     sidekiq (6.4.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -243,4 +243,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.2.28
+   2.3.4

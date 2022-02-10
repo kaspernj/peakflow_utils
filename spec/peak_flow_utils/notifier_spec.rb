@@ -61,7 +61,20 @@ describe PeakFlowUtils::Notifier do
     end
 
     it "sends the error to the server" do
-      expect_any_instance_of(Net::HTTP).to receive(:request).and_return(
+      expect_any_instance_of(Net::HTTP).to receive(:request) do |_https, request|
+        # It sends the request with the expected body
+        body = JSON.parse(request.body)
+
+        expect(body).to match hash_including(
+          "auth_token" => "stub",
+          "error" => hash_including(
+            "error_class" => "RuntimeError",
+            "message" => "stub",
+            "parameters" => {"people" => [{"first_name" => "Kasper"}]}
+          )
+        )
+
+        # Use fake response in test
         instance_double(
           Net::HTTPResponse,
           body: JSON.generate(
@@ -73,9 +86,13 @@ describe PeakFlowUtils::Notifier do
           ),
           code: "200"
         )
-      )
+      end
 
-      response = notifier.notify(error: sample_error)
+      response = nil
+
+      PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Kasper"}]) do
+        response = notifier.notify(error: sample_error)
+      end
 
       expect(response).to have_attributes(
         bug_report_id: 451,

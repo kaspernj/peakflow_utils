@@ -1,6 +1,21 @@
 before_script:
-  - RAILS_ENV=test bundle exec rake db:schema:load
+  - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exists?('spec/dummy/db/peak_flow_utils.sqlite3')"
 rvm: true
+builds:
+  build_1:
+    environment:
+      RUBY_VERSION: 2.7.4
+    name: Ruby 2.7.4
+    script:
+      - bundle exec rspec
+      - bundle exec rake best_practice_project:run
+  build_2:
+    environment:
+      RUBY_VERSION: 3.0.3
+    name: Ruby 3.0.3
+    script:
+      - bundle exec rspec
+      - bundle exec rake best_practice_project:run
 environment:
   REDIS_URL: redis://redis:6379/0
 services:
@@ -8,9 +23,3 @@ services:
     image: redis:5.0.7
     expose:
       - 6379
-before_script:
-  - bundle exec rails db:test:reset
-  - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exists?('spec/dummy/db/peak_flow_utils.sqlite3')"
-script:
-  - bundle exec rspec
-  - bundle exec rake best_practice_project:run

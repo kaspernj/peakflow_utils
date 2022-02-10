@@ -32,8 +32,8 @@ class PeakFlowUtils::Notifier
     hashes
   end
 
-  def self.notify(*args)
-    PeakFlowUtils::Notifier.current.notify(*args)
+  def self.notify(*args, **opts, &blk)
+    PeakFlowUtils::Notifier.current.notify(*args, **opts, &blk)
   end
 
   def self.with_parameters(parameters)
