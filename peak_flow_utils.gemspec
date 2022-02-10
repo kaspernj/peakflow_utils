@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.5"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.executables << "peak_flow_rspec_files"
 
   s.add_dependency "rails", ">= 5.0.0"
 
