@@ -1,5 +1,4 @@
 before_script:
-  - bundle exec rails db:test:reset
   - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exists?('spec/dummy/db/peak_flow_utils.sqlite3')"
 rvm: true
 builds:
