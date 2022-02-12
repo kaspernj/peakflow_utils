@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe PeakFlowUtils::Notifier do
-  let(:notifier) { PeakFlowUtils::Notifier.new(auth_token: "stub") }
+  let(:notifier) { PeakFlowUtils::Notifier.current }
   let(:sample_error) do
     error = nil
 
@@ -14,40 +14,32 @@ describe PeakFlowUtils::Notifier do
     error
   end
 
-  before { reset_notifier_configuration }
+  before do
+    set_notifier_configuration
+    PeakFlowUtils::Notifier.reset_parameters
+  end
 
-  after { reset_notifier_configuration }
-
-  def reset_notifier_configuration
-    PeakFlowUtils::Notifier.instance_variable_set(:@current, nil)
+  def set_notifier_configuration
+    PeakFlowUtils::Notifier.configure(auth_token: "test-token") unless PeakFlowUtils::Notifier.instance_variable_get(:@current)
   end
 
   describe "#configure" do
     it "sets the current notifier" do
-      PeakFlowUtils::Notifier.configure(auth_token: "test-token")
-
       expect(PeakFlowUtils::Notifier.current.auth_token).to eq "test-token"
-    end
-  end
-
-  describe "#current" do
-    it "raises an error if it isn't been configured" do
-      expect { PeakFlowUtils::Notifier.current }
-        .to raise_error(PeakFlowUtils::Notifier::NotConfiguredError, "Hasn't been configured")
     end
   end
 
   describe "#current_parameters" do
     it "registers parameters given through #with_parameters" do
-      PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Kasper"}]) do
-        PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Christina"}]) do
-          parameters = PeakFlowUtils::Notifier.current_parameters
+      PeakFlowUtils::Notifier.with_parameters(people: {kasper: {first_name: "Kasper"}}) do
+        PeakFlowUtils::Notifier.with_parameters(people: {christina: {first_name: "Christina"}}) do
+          parameters = notifier.current_parameters
 
           expect(parameters).to eq(
-            people: [
-              {first_name: "Kasper"},
-              {first_name: "Christina"}
-            ]
+            people: {
+              kasper: {first_name: "Kasper"},
+              christina: {first_name: "Christina"}
+            }
           )
         end
       end
@@ -55,18 +47,13 @@ describe PeakFlowUtils::Notifier do
   end
 
   describe "#notify" do
-    it "raises an error if not configured" do
-      expect { PeakFlowUtils::Notifier.notify(error: "something") }
-        .to raise_error(PeakFlowUtils::Notifier::NotConfiguredError, "Hasn't been configured")
-    end
-
     it "sends the error to the server" do
       expect_any_instance_of(Net::HTTP).to receive(:request) do |_https, request|
         # It sends the request with the expected body
         body = JSON.parse(request.body)
 
         expect(body).to match hash_including(
-          "auth_token" => "stub",
+          "auth_token" => "test-token",
           "error" => hash_including(
             "error_class" => "RuntimeError",
             "message" => "stub",
@@ -89,6 +76,8 @@ describe PeakFlowUtils::Notifier do
       end
 
       response = nil
+
+      expect(PeakFlowUtils::Notifier.current.parameters.value).to eq({})
 
       PeakFlowUtils::Notifier.with_parameters(people: [{first_name: "Kasper"}]) do
         response = notifier.notify(error: sample_error)
@@ -120,6 +109,39 @@ describe PeakFlowUtils::Notifier do
           PeakFlowUtils::Notifier::FailedToReportError,
           "Couldn't report error to Peakflow (code 401): Test error. Another error"
         )
+    end
+
+    it "remembers parameters across threads" do
+      parameters = nil
+
+      PeakFlowUtils::Notifier.with_parameters(birds: {ducks: {donald: {name: "Donald"}}}) do
+        expect(notifier.current_parameters).to eq(birds: {ducks: {donald: {name: "Donald"}}})
+
+        Thread
+          .new do
+            Thread
+              .new do
+                expect(notifier.current_parameters).to eq(birds: {ducks: {donald: {name: "Donald"}}})
+
+                PeakFlowUtils::Notifier.with_parameters(birds: {ducks: {daisy: {name: "Daisy"}}}) do
+                  expect(notifier.current_parameters).to eq(birds: {ducks: {donald: {name: "Donald"}, daisy: {name: "Daisy"}}})
+
+                  parameters = notifier.current_parameters
+                end
+              end
+              .join
+          end
+          .join
+      end
+
+      expect(parameters).to eq(
+        birds: {
+          ducks: {
+            donald: {name: "Donald"},
+            daisy: {name: "Daisy"}
+          }
+        }
+      )
     end
   end
 end

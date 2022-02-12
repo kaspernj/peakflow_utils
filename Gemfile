@@ -5,7 +5,6 @@ group :development, :test do
   gem "best_practice_project"
   gem "globalize"
   gem "money-rails"
-  gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop"
   gem "rubocop-performance"
