@@ -24,11 +24,13 @@ Thread.class_eval do
   end
 
   def self.inherited_local_vars_delete(key)
-    #inherited_local_vars_mutex.synchronize do
-    #  raise "Key didn't exist: #{key}" unless _inherited_local_vars.key?(key)
+    inherited_local_vars_mutex.synchronize do
+      raise "Key didn't exist: #{key}" unless _inherited_local_vars.key?(key)
 
       _inherited_local_vars.delete(key)
-    #end
+    end
+  rescue ThreadError # This can happen when process is closing down
+    _inherited_local_vars.delete(key)
   end
 
   def self.inherited_local_vars_fetch(key)
@@ -57,9 +59,9 @@ class PeakFlowUtils::InheritedLocalVar
 
   def self.finalize(inherited_local_var_object_id)
     Thread.inherited_local_vars_delete("inherited_local_var_#{inherited_local_var_object_id}")
-  rescue Exception => e
-    puts e.inspect
-    puts e.backtrace
+  rescue Exception => e # rubocop:disable Lint/RescueException
+    puts e.inspect # rubocop:disable Rails/Output
+    puts e.backtrace # rubocop:disable Rails/Output
 
     raise e
   end
