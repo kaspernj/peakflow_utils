@@ -7,6 +7,7 @@ module PeakFlowUtils
   path = "#{__dir__}/peak_flow_utils"
   models_path = "#{__dir__}/peak_flow_utils/models"
 
+  autoload :InheritedLocalVar, "#{path}/inherited_local_var"
   autoload :Notifier, "#{path}/notifier"
   autoload :NotifierErrorParser, "#{path}/notifier_error_parser"
   autoload :NotifierRack, "#{path}/notifier_rack"
