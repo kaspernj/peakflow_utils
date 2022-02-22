@@ -13,14 +13,16 @@ class PeakFlowUtils::Notifier
   end
 
   def self.notify(*args, **opts, &blk)
-    PeakFlowUtils::Notifier.current.notify(*args, **opts, &blk)
+    PeakFlowUtils::Notifier.current&.notify(*args, **opts, &blk)
   end
 
   def self.reset_parameters
-    ::PeakFlowUtils::Notifier.current.instance_variable_set(:@parameters, ::PeakFlowUtils::InheritedLocalVar.new({}))
+    ::PeakFlowUtils::Notifier.current&.instance_variable_set(:@parameters, ::PeakFlowUtils::InheritedLocalVar.new({}))
   end
 
   def self.with_parameters(parameters)
+    return unless ::PeakFlowUtils::Notifier.current
+
     random_id = ::SecureRandom.hex(16)
 
     ::PeakFlowUtils::Notifier.current.mutex.synchronize do
@@ -83,9 +85,6 @@ class PeakFlowUtils::Notifier
 
     uri = URI("https://www.peakflow.io/errors/reports")
 
-    https = ::Net::HTTP.new(uri.host, uri.port)
-    https.use_ssl = true
-
     data = {
       auth_token: auth_token,
       error: {
@@ -101,6 +100,13 @@ class PeakFlowUtils::Notifier
         user_agent: error_parser.user_agent
       }
     }
+
+    send_notify_request(data: data, uri: uri)
+  end
+
+  def send_notify_request(data:, uri:)
+    https = ::Net::HTTP.new(uri.host, uri.port)
+    https.use_ssl = true
 
     request = ::Net::HTTP::Post.new(uri.path)
     request["Content-Type"] = "application/json"
