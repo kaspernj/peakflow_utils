@@ -83,9 +83,6 @@ class PeakFlowUtils::Notifier
 
     uri = URI("https://www.peakflow.io/errors/reports")
 
-    https = ::Net::HTTP.new(uri.host, uri.port)
-    https.use_ssl = true
-
     data = {
       auth_token: auth_token,
       error: {
@@ -106,6 +103,9 @@ class PeakFlowUtils::Notifier
   end
 
   def send_notify_request(data:, uri:)
+    https = ::Net::HTTP.new(uri.host, uri.port)
+    https.use_ssl = true
+
     request = ::Net::HTTP::Post.new(uri.path)
     request["Content-Type"] = "application/json"
     request.body = ::JSON.generate(data)
