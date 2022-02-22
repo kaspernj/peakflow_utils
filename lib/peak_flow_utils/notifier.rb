@@ -102,6 +102,10 @@ class PeakFlowUtils::Notifier
       }
     }
 
+    send_notify_request(data: data, uri: uri)
+  end
+
+  def send_notify_request(data:, uri:)
     request = ::Net::HTTP::Post.new(uri.path)
     request["Content-Type"] = "application/json"
     request.body = ::JSON.generate(data)
