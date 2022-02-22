@@ -39,11 +39,23 @@ Add this to `config/peakflow.rb`:
 PeakFlowUtils::NotifierRails.configure
 ```
 
+### Reporting ActiveJob errors in Rails:
+
+If you want the job name and its arguments logged in parameters you can execute this service:
+```ruby
+PeakFlowUtils::ActiveJobParametersLogging.execute!
+```
+
 ### Reporting Sidekiq errors in Rails:
 
 Add this to `config/peakflow.rb`:
 ```ruby
 PeakFlowUtils::NotifierSidekiq.configure
+```
+
+If you want the job name and its arguments logged in parameters you can execute this service:
+```ruby
+PeakFlowUtils::SidekiqParamatersLogging.execute!
 ```
 
 ## Contributing
