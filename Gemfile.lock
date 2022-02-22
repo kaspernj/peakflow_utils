@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    peak_flow_utils (0.1.15)
+    peak_flow_utils (0.1.16)
       active-record-transactioner
       array_enumerator
       rails (>= 5.0.0)
