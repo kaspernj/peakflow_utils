@@ -55,7 +55,7 @@ PeakFlowUtils::NotifierSidekiq.configure
 
 If you want the job name and its arguments logged in parameters you can execute this service:
 ```ruby
-PeakFlowUtils::SidekiqParamatersLogging.execute!
+PeakFlowUtils::SidekiqParametersLogging.execute!
 ```
 
 ## Contributing

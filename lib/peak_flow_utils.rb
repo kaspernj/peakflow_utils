@@ -27,6 +27,6 @@ module PeakFlowUtils
 
   autoload :ActiveJobParametersLogging, "#{services_path}/active_job_parameters_logging"
   autoload :ApplicationService, "#{services_path}/application_service"
-  autoload :SidekiqParamatersLogging, "#{services_path}/sidekiq_parameters_logging"
+  autoload :SidekiqParametersLogging, "#{services_path}/sidekiq_parameters_logging"
   autoload :DeepMerger, "#{services_path}/deep_merger"
 end

@@ -1,4 +1,4 @@
-class PeakFlowUtils::SidekiqParamatersLogging < PeakFlowUtils::ApplicationService
+class PeakFlowUtils::SidekiqParametersLogging < PeakFlowUtils::ApplicationService
   def perform
     require "sidekiq"
     require "sidekiq/processor"
