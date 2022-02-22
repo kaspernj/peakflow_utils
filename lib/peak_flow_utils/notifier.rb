@@ -13,14 +13,16 @@ class PeakFlowUtils::Notifier
   end
 
   def self.notify(*args, **opts, &blk)
-    PeakFlowUtils::Notifier.current.notify(*args, **opts, &blk)
+    PeakFlowUtils::Notifier.current&.notify(*args, **opts, &blk)
   end
 
   def self.reset_parameters
-    ::PeakFlowUtils::Notifier.current.instance_variable_set(:@parameters, ::PeakFlowUtils::InheritedLocalVar.new({}))
+    ::PeakFlowUtils::Notifier.current&.instance_variable_set(:@parameters, ::PeakFlowUtils::InheritedLocalVar.new({}))
   end
 
   def self.with_parameters(parameters)
+    return unless ::PeakFlowUtils::Notifier.current
+
     random_id = ::SecureRandom.hex(16)
 
     ::PeakFlowUtils::Notifier.current.mutex.synchronize do
