@@ -10,5 +10,7 @@ class PeakFlowUtils::SidekiqParamatersLogging < PeakFlowUtils::ApplicationServic
         end
       end
     end
+
+    succeed!
   end
 end

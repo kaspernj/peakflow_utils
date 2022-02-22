@@ -8,8 +8,6 @@ module PeakFlowUtils
   models_path = "#{__dir__}/peak_flow_utils/models"
   services_path = File.realpath("#{__dir__}/../app/services/peak_flow_utils")
 
-  autoload :ApplicationService, "#{services_path}/application_service"
-  autoload :DeepMerger, "#{services_path}/deep_merger"
   autoload :InheritedLocalVar, "#{path}/inherited_local_var"
   autoload :Notifier, "#{path}/notifier"
   autoload :NotifierErrorParser, "#{path}/notifier_error_parser"
@@ -26,4 +24,9 @@ module PeakFlowUtils
   autoload :ScannedFile, "#{models_path}/scanned_file"
   autoload :TranslationKey, "#{models_path}/translation_key"
   autoload :TranslationValue, "#{models_path}/translation_value"
+
+  autoload :ActiveJobParametersLogging, "#{services_path}/active_job_parameters_logging"
+  autoload :ApplicationService, "#{services_path}/application_service"
+  autoload :SidekiqParamatersLogging, "#{services_path}/sidekiq_parameters_logging"
+  autoload :DeepMerger, "#{services_path}/deep_merger"
 end

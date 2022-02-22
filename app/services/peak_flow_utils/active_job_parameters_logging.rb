@@ -7,5 +7,7 @@ class PeakFlowUtils::ActiveJobParametersLogging < PeakFlowUtils::ApplicationServ
         end
       end
     end
+
+    succeed!
   end
 end
