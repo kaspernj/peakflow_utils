@@ -21,7 +21,7 @@ class PeakFlowUtils::Notifier
   end
 
   def self.with_parameters(parameters)
-    return unless ::PeakFlowUtils::Notifier.current
+    return yield unless ::PeakFlowUtils::Notifier.current
 
     random_id = ::SecureRandom.hex(16)
 
