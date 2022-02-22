@@ -6,7 +6,10 @@ require "service_pattern"
 module PeakFlowUtils
   path = "#{__dir__}/peak_flow_utils"
   models_path = "#{__dir__}/peak_flow_utils/models"
+  services_path = File.realpath("#{__dir__}/../app/services/peak_flow_utils")
 
+  autoload :ApplicationService, "#{services_path}/application_service"
+  autoload :DeepMerger, "#{services_path}/deep_merger"
   autoload :InheritedLocalVar, "#{path}/inherited_local_var"
   autoload :Notifier, "#{path}/notifier"
   autoload :NotifierErrorParser, "#{path}/notifier_error_parser"
