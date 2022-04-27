@@ -1,6 +1,7 @@
 class PeakFlowUtils::Notifier
   class FailedToReportError < RuntimeError; end
   class NotConfiguredError < RuntimeError; end
+  class NotifyMessageError < RuntimeError; end
 
   attr_reader :auth_token, :mutex, :parameters
 
@@ -14,6 +15,10 @@ class PeakFlowUtils::Notifier
 
   def self.notify(*args, **opts, &blk)
     PeakFlowUtils::Notifier.current&.notify(*args, **opts, &blk)
+  end
+
+  def self.notify_message(*args, **opts, &blk)
+    PeakFlowUtils::Notifier.current&.notify_message(*args, **opts, &blk)
   end
 
   def self.reset_parameters
@@ -102,6 +107,12 @@ class PeakFlowUtils::Notifier
     }
 
     send_notify_request(data: data, uri: uri)
+  end
+
+  def notify_message(message, **opts)
+    raise NotifyMessageError, message
+  rescue NotifyMessageError => e
+    notify(error: e, **opts)
   end
 
   def send_notify_request(data:, uri:)
