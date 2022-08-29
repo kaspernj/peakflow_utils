@@ -58,6 +58,26 @@ If you want the job name and its arguments logged in parameters you can execute 
 PeakFlowUtils::SidekiqParametersLogging.execute!
 ```
 
+### Sidekiq and Postgres pings
+
+Add this to `routes.rb`:
+```ruby
+Rails.application.routes.draw do
+  mount PeakFlowUtils::Engine => "/peakflow_utils"
+```
+
+Add these to .env variables:
+```
+PEAKFLOW_PINGS_USERNAME=username
+PEAKFLOW_PINGS_PASSWORD=secret-password
+```
+
+You can now add a HTTP ping on this path:
+`/peakflow_utils/pings/sidekiq`
+
+And this for Postgres:
+`/pings/postgres_connections`
+
 ## Contributing
 Contribution directions go here.
 
