@@ -1,7 +1,6 @@
-require "sidekiq/api"
-
 class PeakFlowUtils::Pings::SidekiqController < PeakFlowUtils::ApplicationController
   def index
+    require "sidekiq/api"
     sidekiq_queue = Sidekiq::Queue.new
 
     render json: {
