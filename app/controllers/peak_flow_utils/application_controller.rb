@@ -9,7 +9,7 @@ private
     authenticate_or_request_with_http_basic do |username, password|
       if ENV["PEAKFLOW_PINGS_USERNAME"].blank? || ENV["PEAKFLOW_PINGS_PASSWORD"].blank?
         Rails.logger.error "Peakflow utils: Pings called but PEAKFLOW_PINGS_USERNAME or PEAKFLOW_PINGS_PASSWORD wasn't set"
-        false
+        return false
       end
 
       username == ENV.fetch("PEAKFLOW_PINGS_USERNAME") && password == ENV.fetch("PEAKFLOW_PINGS_PASSWORD")
