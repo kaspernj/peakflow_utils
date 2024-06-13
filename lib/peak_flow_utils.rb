@@ -16,6 +16,7 @@ module PeakFlowUtils
   autoload :NotifierResponse, "#{path}/notifier_response"
   autoload :NotifierSidekiq, "#{path}/notifier_sidekiq"
   autoload :HandlerHelper, "#{path}/handler_helper"
+  autoload :ParseJson, "#{path}/parse_json"
 
   autoload :ApplicationRecord, "#{models_path}/application_record"
   autoload :Group, "#{models_path}/group"
