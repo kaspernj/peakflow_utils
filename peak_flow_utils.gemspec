@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "peak_flow_utils"
   s.version     = PeakFlowUtils::VERSION
   s.authors     = ["kaspernj"]
-  s.email       = ["kaspernj@gmail.com"]
+  s.email       = ["k@spernj.org"]
   s.homepage    = "https://github.com/kaspernj/peak_flow_utils"
   s.summary     = "Utilities to be used with PeakFlow."
   s.description = "Utilities to be used with PeakFlow."
