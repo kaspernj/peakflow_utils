@@ -106,7 +106,7 @@ class PeakFlowUtils::Notifier
       }
     }
 
-    send_notify_request(data: data, uri: uri)
+    send_notify_request(data: PeakFlowUtils::ParseJson.new(data).parse, uri: uri)
   end
 
   def notify_message(message, **opts)
