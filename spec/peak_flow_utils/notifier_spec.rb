@@ -57,7 +57,10 @@ describe PeakFlowUtils::Notifier do
           "error" => hash_including(
             "error_class" => "RuntimeError",
             "message" => "stub",
-            "parameters" => {"people" => [{"first_name" => "Kasper"}]}
+            "parameters" => {
+              "people" => [{"first_name" => "Kasper"}],
+              "extra_param" => "test"
+            }
           )
         )
 
