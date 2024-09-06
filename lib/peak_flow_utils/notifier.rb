@@ -54,6 +54,7 @@ class PeakFlowUtils::Notifier
   def initialize(auth_token:)
     @auth_token = auth_token
     @mutex = ::Mutex.new
+    @on_notify_callbacks = []
     @parameters = ::PeakFlowUtils::InheritedLocalVar.new({})
   end
 
@@ -90,6 +91,10 @@ class PeakFlowUtils::Notifier
 
     uri = URI("https://www.peakflow.io/errors/reports")
 
+    @on_notify_callbacks.each do |on_notify_callback|
+      on_notify_callback.call(parameters: merged_parameters)
+    end
+
     data = {
       auth_token: auth_token,
       error: {
@@ -113,6 +118,10 @@ class PeakFlowUtils::Notifier
     raise NotifyMessageError, message
   rescue NotifyMessageError => e
     notify(error: e, **opts)
+  end
+
+  def on_notify(&blk)
+    @on_notify_callbacks << blk
   end
 
   def send_notify_request(data:, uri:)

@@ -42,7 +42,8 @@ describe "notifier rack" do
               rack: {
                 get: {"first_name" => "Kasper"},
                 post: {"last_name" => "Stöckel"}
-              }
+              },
+              extra_param: "test"
             },
             remote_ip: "127.0.0.1",
             url: "http://www.example.com/notifier_errors/action_error?first_name=Kasper"
