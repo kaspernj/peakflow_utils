@@ -10,6 +10,7 @@ module PeakFlowUtils
 
   autoload :InheritedLocalVar, "#{path}/inherited_local_var"
   autoload :Notifier, "#{path}/notifier"
+  autoload :NotifierActiveRecord, "#{path}/notifier_active_record"
   autoload :NotifierErrorParser, "#{path}/notifier_error_parser"
   autoload :NotifierRack, "#{path}/notifier_rack"
   autoload :NotifierRails, "#{path}/notifier_rails"
