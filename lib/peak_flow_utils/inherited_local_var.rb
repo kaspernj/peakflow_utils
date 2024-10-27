@@ -2,7 +2,9 @@ require "monitor"
 require_relative "thread_callbacks_patch"
 
 Thread.on_initialize do |parent:, thread:|
-  thread.instance_variable_set(:@_inherited_local_vars, parent.instance_variable_get(:@_inherited_local_vars))
+  parent_vars = parent.instance_variable_get(:@_inherited_local_vars)
+  new_cloned_vars = PeakFlowUtils::DeepMerger.execute!(hashes: [parent_vars])
+  thread.instance_variable_set(:@_inherited_local_vars, new_cloned_vars)
 end
 
 Thread.class_eval do
@@ -57,8 +59,13 @@ end
 class PeakFlowUtils::InheritedLocalVar
   attr_reader :identifier
 
+  def self.identifier_for_object_id(object_id)
+    "inherited_local_var_#{object_id}"
+  end
+
   def self.finalize(inherited_local_var_object_id)
-    Thread.inherited_local_vars_delete("inherited_local_var_#{inherited_local_var_object_id}")
+    identifier = PeakFlowUtils::InheritedLocalVar.identifier_for_object_id(inherited_local_var_object_id)
+    Thread.inherited_local_vars_delete(identifier)
   rescue Exception => e # rubocop:disable Lint/RescueException
     puts e.inspect # rubocop:disable Rails/Output
     puts e.backtrace # rubocop:disable Rails/Output
@@ -68,9 +75,7 @@ class PeakFlowUtils::InheritedLocalVar
 
   def initialize(new_value = nil)
     ObjectSpace.define_finalizer(self, PeakFlowUtils::InheritedLocalVar.method(:finalize))
-
-    @identifier = "inherited_local_var_#{__id__}"
-
+    @identifier = PeakFlowUtils::InheritedLocalVar.identifier_for_object_id(__id__)
     Thread.inherited_local_vars_set(identifier => new_value)
   end
 
