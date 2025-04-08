@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    peak_flow_utils (0.1.19)
+    peak_flow_utils (0.1.20)
       active-record-transactioner
       array_enumerator
       rails (>= 5.0.0)
@@ -87,6 +87,7 @@ GEM
     ast (2.4.2)
     auto_autoloader (0.0.5)
       string-cases
+    base64 (0.2.0)
     best_practice_project (0.0.12)
       auto_autoloader (>= 0.0.5)
     builder (3.2.4)
@@ -94,7 +95,7 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
-    date (3.3.4)
+    date (3.4.1)
     diff-lcs (1.5.0)
     erubi (1.12.0)
     globalid (1.2.1)
@@ -123,16 +124,16 @@ GEM
       monetize (~> 1.9)
       money (~> 6.13)
       railties (>= 3.0)
-    net-imap (0.4.12)
+    net-imap (0.4.19)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.5.0)
+    net-smtp (0.5.1)
       net-protocol
-    nio4r (2.7.3)
+    nio4r (2.7.4)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
@@ -229,20 +230,21 @@ GEM
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.1)
+    sprockets-rails (3.5.2)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.4)
     string-cases (0.0.4)
     thor (1.2.2)
-    timeout (0.4.1)
+    timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.4)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.12)
