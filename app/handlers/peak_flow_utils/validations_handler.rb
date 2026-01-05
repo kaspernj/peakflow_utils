@@ -79,7 +79,7 @@ private
     yielder << PeakFlowUtils::TranslationService.new(
       key: "activerecord.errors.models.#{snake_clazz_name}.attributes.#{attribute_name}.#{key}",
       key_show: "#{attribute_name}.#{key}",
-      dir: "#{Rails.root}/config/locales/awesome_translations/models/#{snake_clazz_name}"
+      dir: Rails.root.join("config/locales/awesome_translations/models/#{snake_clazz_name}").to_s
     )
   end
 end

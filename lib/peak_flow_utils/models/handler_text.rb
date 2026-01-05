@@ -3,7 +3,6 @@ class PeakFlowUtils::HandlerText < PeakFlowUtils::ApplicationRecord
   belongs_to :handler
   belongs_to :translation_key
 
-  validates :handler, :translation_key, presence: true
 
   delegate :key, :last_key, to: :translation_key
   delegate :value, to: :translation, prefix: true

@@ -3,7 +3,7 @@ class Role < ApplicationRecord
 
   belongs_to :user
 
-  validates :user, :role, presence: true
+  validates :role, presence: true
 
   monetize :price_cents, allow_nil: true
 

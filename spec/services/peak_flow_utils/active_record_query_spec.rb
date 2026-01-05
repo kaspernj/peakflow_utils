@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe PeakFlowUtils::ActiveRecordQuery do
-  let(:event) { instance_double("ActiveSupport::Notifications::Event", duration: 3500, payload: {sql: "SELECT * FROM users"}) }
+  let(:event) { instance_double(ActiveSupport::Notifications::Event, duration: 3500, payload: {sql: "SELECT * FROM users"}) }
   let(:service) { PeakFlowUtils::ActiveRecordQuery.new(event) }
 
   it "reports an error for slow SQL" do

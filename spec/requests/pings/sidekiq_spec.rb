@@ -13,7 +13,7 @@ describe "peak flow utils - postgres connections" do
 
     get "/peak_flow_utils/pings/sidekiq", headers: headers
 
-    result = JSON.parse(response.body)
+    result = response.parsed_body
 
     expect(result).to eq(
       "check_json_status" => "OK",

@@ -57,11 +57,11 @@ describe "notifier rack" do
   end
 
   it "reports the error with query and json post parameters" do
-    expect(::PeakFlowUtils::Notifier).to receive(:notify).with(
+    expect(PeakFlowUtils::Notifier).to receive(:notify).with(
       environment: instance_of(Hash),
       error: instance_of(RuntimeError)
     )
-    expect(::PeakFlowUtils::Notifier)
+    expect(PeakFlowUtils::Notifier)
       .to receive(:with_parameters).with(
         rack: {
           get: {

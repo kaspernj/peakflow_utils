@@ -114,6 +114,36 @@ describe PeakFlowUtils::Notifier do
         )
     end
 
+    it "coerces string errors and ensures a backtrace" do
+      captured_body = nil
+
+      expect_any_instance_of(Net::HTTP).to receive(:request) do |_https, request|
+        captured_body = JSON.parse(request.body)
+
+        instance_double(
+          Net::HTTPResponse,
+          body: JSON.generate(
+            bug_report_id: 451,
+            bug_report_instance_id: 452,
+            project_id: 453,
+            project_slug: "test-project",
+            url: "https://www.peakflow.io/something"
+          ),
+          code: "200"
+        )
+      end
+
+      notifier.notify(error: "Hello")
+
+      error_payload = captured_body.fetch("error")
+      backtrace = error_payload.fetch("backtrace")
+
+      expect(error_payload.fetch("error_class")).to eq("RuntimeError")
+      expect(error_payload.fetch("message")).to eq("Hello")
+      expect(backtrace).to be_an(Array)
+      expect(backtrace).not_to be_empty
+    end
+
     it "#notify_message" do
       expect(PeakFlowUtils::Notifier.current).to receive(:notify) do |error:|
         expect(error.message).to eq "test"

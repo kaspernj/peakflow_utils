@@ -13,12 +13,12 @@ class PeakFlowUtils::Notifier
     @current
   end
 
-  def self.notify(*args, **opts, &blk)
-    PeakFlowUtils::Notifier.current&.notify(*args, **opts, &blk)
+  def self.notify(...)
+    PeakFlowUtils::Notifier.current&.notify(...)
   end
 
-  def self.notify_message(*args, **opts, &blk)
-    PeakFlowUtils::Notifier.current&.notify_message(*args, **opts, &blk)
+  def self.notify_message(...)
+    PeakFlowUtils::Notifier.current&.notify_message(...)
   end
 
   def self.reset_parameters
@@ -81,6 +81,7 @@ class PeakFlowUtils::Notifier
   end
 
   def notify(error:, environment: nil, parameters: nil)
+    error = normalize_error(error, fallback_backtrace: caller(2))
     error_parser = ::PeakFlowUtils::NotifierErrorParser.new(
       backtrace: error.backtrace,
       environment: environment,
@@ -114,10 +115,10 @@ class PeakFlowUtils::Notifier
     send_notify_request(data: PeakFlowUtils::ParseJson.new(data).parse, uri: uri)
   end
 
-  def notify_message(message, **opts)
+  def notify_message(message, **)
     raise NotifyMessageError, message
   rescue NotifyMessageError => e
-    notify(error: e, **opts)
+    notify(error: e, **)
   end
 
   def on_notify(&blk)
@@ -146,5 +147,19 @@ class PeakFlowUtils::Notifier
       project_slug: response_data["project_slug"],
       url: response_data["url"]
     )
+  end
+
+private
+
+  def normalize_error(error, fallback_backtrace:)
+    error = RuntimeError.new(error) if error.is_a?(String)
+
+    if error.backtrace.blank?
+      backtrace = fallback_backtrace
+      backtrace = caller(1) if backtrace.blank?
+      error.set_backtrace(backtrace)
+    end
+
+    error
   end
 end

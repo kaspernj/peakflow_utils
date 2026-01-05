@@ -9,9 +9,10 @@ AllCops:
     - node_modules/**/*
     - spec/dummy/db/schema.rb
   NewCops: enable
-  TargetRubyVersion: 2.5
+  SuggestExtensions: false
+  TargetRubyVersion: 3.4
 
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec

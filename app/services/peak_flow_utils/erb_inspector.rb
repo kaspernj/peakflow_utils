@@ -3,11 +3,7 @@ class PeakFlowUtils::ErbInspector
     @args = args
     @args[:exts] ||= [".erb", ".haml", ".liquid", ".markerb", ".rb", ".rake", ".slim", "."] + PeakFlowUtils::ErbInspector::FileInspector::JS_FILE_EXTS
 
-    if @args[:dirs]
-      @dirs = @args[:dirs]
-    else
-      @dirs = PeakFlowUtils::ConfigurationService.current.paths_to_translate
-    end
+    @dirs = @args[:dirs] || PeakFlowUtils::ConfigurationService.current.paths_to_translate
   end
 
   # Yields all relevant .erb- and .haml-files.

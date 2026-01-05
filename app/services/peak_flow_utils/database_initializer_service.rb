@@ -3,7 +3,7 @@ class PeakFlowUtils::DatabaseInitializerService < PeakFlowUtils::ApplicationServ
     path = File.realpath("#{__dir__}/../../../lib/peak_flow_utils/migrations")
     create_schema_table unless schema_table_exists?
 
-    Dir["#{path}/[0-9]*_*.rb"].sort.map do |filename|
+    Dir["#{path}/[0-9]*_*.rb"].map do |filename|
       match = filename.match(/migrations\/(\d+)_(.+)\.rb\Z/)
       next unless match
 

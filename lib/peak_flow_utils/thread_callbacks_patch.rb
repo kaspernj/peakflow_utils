@@ -12,12 +12,12 @@ class Thread
     count_to_use
   end
 
-  def initialize(*args, &block)
+  def initialize(*, &)
     @@on_initialize_callbacks ||= {} # rubocop:disable Style/ClassVars
     @@on_initialize_callbacks.each_value do |callback|
       callback.call(parent: Thread.current, thread: self)
     end
 
-    _initialize(*args, &block)
+    _initialize(*, &)
   end
 end
