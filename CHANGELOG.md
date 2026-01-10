@@ -6,3 +6,4 @@
 - Ensure ApplicationMigration provides both instance and class connection methods.
 - Limit net-smtp to development/test dependencies.
 - Use explicit keyword forwarding for notifier class/instance helper methods.
+- Add chained setup build to reuse Peakflow build container.
