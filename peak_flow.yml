@@ -1,5 +1,5 @@
 before_script:
-  - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exists?('spec/dummy/db/peak_flow_utils.sqlite3')"
+  - ruby -e "File.unlink('spec/dummy/db/peak_flow_utils.sqlite3') if File.exist?('spec/dummy/db/peak_flow_utils.sqlite3')"
   - bundle exec appraisal bundle
 rvm: true
 builds:
