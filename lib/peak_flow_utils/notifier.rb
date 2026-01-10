@@ -13,8 +13,14 @@ class PeakFlowUtils::Notifier
     @current
   end
 
-  def self.notify(**)
-    PeakFlowUtils::Notifier.current&.notify(**)
+  def self.notify(*args, **kwargs)
+    if args.any?
+      raise ArgumentError, "unexpected positional arguments" unless args.first.is_a?(Hash) && args.length == 1
+
+      kwargs = args.first.merge(kwargs)
+    end
+
+    PeakFlowUtils::Notifier.current&.notify(**kwargs)
   end
 
   def self.notify_message(message, **)

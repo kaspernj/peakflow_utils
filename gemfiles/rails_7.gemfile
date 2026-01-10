@@ -10,6 +10,7 @@ group :development, :test do
   gem "globalize", git: "https://github.com/globalize/globalize.git"
   gem "money-rails"
   gem "net-imap", "~> 0.4.11"
+  gem "net-smtp"
   gem "pry-rails"
   gem "redis"
   gem "rspec-rails"

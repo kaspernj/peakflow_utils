@@ -274,6 +274,7 @@ DEPENDENCIES
   globalize!
   money-rails
   net-imap (~> 0.4.11)
+  net-smtp
   peak_flow_utils!
   pry-rails
   rails (= 7.0.2.2)

@@ -145,7 +145,9 @@ describe PeakFlowUtils::Notifier do
     end
 
     it "#notify_message" do
-      expect(PeakFlowUtils::Notifier.current).to receive(:notify) do |error:|
+      expect(PeakFlowUtils::Notifier.current).to receive(:notify) do |args|
+        error = args.fetch(:error)
+
         expect(error.message).to eq "test"
         expect(error).to be_an_instance_of(PeakFlowUtils::Notifier::NotifyMessageError)
       end

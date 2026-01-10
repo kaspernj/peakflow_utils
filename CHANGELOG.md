@@ -7,3 +7,5 @@
 - Limit net-smtp to development/test dependencies.
 - Use explicit keyword forwarding for notifier class/instance helper methods.
 - Add chained setup build to reuse Peakflow build container.
+- Require net/smtp in test setup to satisfy mail loading.
+- Allow notifier class helper to accept positional hash for older RSpec keyword handling.
