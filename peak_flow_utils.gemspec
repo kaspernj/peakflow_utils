@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Utilities to be used with PeakFlow."
   s.description = "Utilities to be used with PeakFlow."
   s.license     = "MIT"
-  s.required_ruby_version = ">= 3.2.9"
+  s.required_ruby_version = ">= 3.2.9" # rubocop:disable Gemspec/RequiredRubyVersion
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bigdecimal"
   s.add_dependency "drb"
   s.add_dependency "mutex_m"
+  s.add_dependency "net-smtp"
   s.add_dependency "service_pattern", ">= 1.0.5"
 
   s.metadata["rubygems_mfa_required"] = "true"

@@ -16,6 +16,7 @@ PATH
       bigdecimal
       drb
       mutex_m
+      net-smtp
       rails (>= 5.0.0)
       service_pattern (>= 1.0.5)
 
