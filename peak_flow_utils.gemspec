@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Utilities to be used with PeakFlow."
   s.description = "Utilities to be used with PeakFlow."
   s.license     = "MIT"
-  s.required_ruby_version = ">= 3.4.0"
+  s.required_ruby_version = ">= 3.2.9"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
