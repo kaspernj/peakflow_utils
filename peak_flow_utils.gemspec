@@ -26,7 +26,5 @@ Gem::Specification.new do |s|
   s.add_dependency "mutex_m"
   s.add_dependency "service_pattern", ">= 1.0.5"
 
-  s.add_development_dependency "net-smtp"
-
   s.metadata["rubygems_mfa_required"] = "true"
 end

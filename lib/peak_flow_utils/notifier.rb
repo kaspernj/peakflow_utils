@@ -13,12 +13,12 @@ class PeakFlowUtils::Notifier
     @current
   end
 
-  def self.notify(**kwargs)
-    PeakFlowUtils::Notifier.current&.notify(**kwargs)
+  def self.notify(**)
+    PeakFlowUtils::Notifier.current&.notify(**)
   end
 
-  def self.notify_message(message, **kwargs)
-    PeakFlowUtils::Notifier.current&.notify_message(message, **kwargs)
+  def self.notify_message(message, **)
+    PeakFlowUtils::Notifier.current&.notify_message(message, **)
   end
 
   def self.reset_parameters
@@ -115,10 +115,10 @@ class PeakFlowUtils::Notifier
     send_notify_request(data: PeakFlowUtils::ParseJson.new(data).parse, uri: uri)
   end
 
-  def notify_message(message, **kwargs)
+  def notify_message(message, **)
     raise NotifyMessageError, message
   rescue NotifyMessageError => e
-    notify(error: e, **kwargs)
+    notify(error: e, **)
   end
 
   def on_notify(&blk)
