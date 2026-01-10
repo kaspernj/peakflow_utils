@@ -11,42 +11,42 @@ builds:
           RUBY_VERSION: 3.2.9
         name: Ruby 3.2.9, Rails 6
         script:
-          - bundle
+          - bundle exec appraisal "rails 6" bundle
           - bundle exec appraisal "rails 6" rspec
       build_2:
         environment:
           RUBY_VERSION: 3.3.10
         name: Ruby 3.3.10, Rails 6
         script:
-          - bundle
+          - bundle exec appraisal "rails 6" bundle
           - bundle exec appraisal "rails 6" rspec
       build_3:
         environment:
           RUBY_VERSION: 3.4.8
         name: Ruby 3.4.8, Rails 6
         script:
-          - bundle
+          - bundle exec appraisal "rails 6" bundle
           - bundle exec appraisal "rails 6" rspec
       build_4:
         environment:
           RUBY_VERSION: 3.2.9
         name: Ruby 3.2.9, Rails 7
         script:
-          - bundle
+          - bundle exec appraisal "rails 7" bundle
           - bundle exec appraisal "rails 7" rspec
       build_5:
         environment:
           RUBY_VERSION: 3.0.3
         name: Ruby 3.3.10, Rails 7
         script:
-          - bundle
+          - bundle exec appraisal "rails 7" bundle
           - bundle exec appraisal "rails 7" rspec
       build_6:
         environment:
           RUBY_VERSION: 3.4.8
         name: Ruby 3.4.8, Rails 7
         script:
-          - bundle
+          - bundle exec appraisal "rails 7" bundle
           - bundle exec appraisal "rails 7" rspec
       build_7:
         name: Linters
