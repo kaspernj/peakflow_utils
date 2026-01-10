@@ -98,6 +98,7 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (3.0.2)
     crass (1.0.6)
+    date (3.5.1)
     diff-lcs (1.5.0)
     drb (2.2.3)
     erubi (1.10.0)
@@ -128,6 +129,11 @@ GEM
       money (~> 6.13)
       railties (>= 3.0)
     mutex_m (0.3.0)
+    net-imap (0.4.23)
+      date
+      net-protocol
+    net-protocol (0.2.2)
+      timeout
     nio4r (2.5.8)
     nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -240,6 +246,7 @@ GEM
     sqlite3 (1.4.2)
     string-cases (0.0.4)
     thor (1.2.1)
+    timeout (0.6.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2025.3)
@@ -260,6 +267,7 @@ DEPENDENCIES
   best_practice_project
   globalize!
   money-rails
+  net-imap (~> 0.4.11)
   peak_flow_utils!
   pry-rails
   rails (= 6.1.4.6)

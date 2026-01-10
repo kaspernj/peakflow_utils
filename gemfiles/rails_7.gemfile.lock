@@ -104,6 +104,7 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
+    date (3.5.1)
     diff-lcs (1.5.0)
     digest (3.1.0)
     drb (2.2.3)
@@ -135,10 +136,9 @@ GEM
       money (~> 6.13)
       railties (>= 3.0)
     mutex_m (0.3.0)
-    net-imap (0.2.3)
-      digest
+    net-imap (0.4.23)
+      date
       net-protocol
-      strscan
     net-pop (0.1.1)
       digest
       net-protocol
@@ -251,7 +251,6 @@ GEM
       redis (>= 4.2.0)
     sqlite3 (1.4.2)
     string-cases (0.0.4)
-    strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
     tzinfo (2.0.4)
@@ -274,6 +273,7 @@ DEPENDENCIES
   best_practice_project
   globalize!
   money-rails
+  net-imap (~> 0.4.11)
   peak_flow_utils!
   pry-rails
   rails (= 7.0.2.2)
