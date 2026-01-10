@@ -4,3 +4,5 @@
 - Disable Gemspec/RequiredRubyVersion for the gemspec required_ruby_version line.
 - Add net-smtp dependency so mail can load under Ruby 3.3+.
 - Ensure ApplicationMigration provides both instance and class connection methods.
+- Limit net-smtp to development/test dependencies.
+- Use explicit keyword forwarding for notifier class/instance helper methods.

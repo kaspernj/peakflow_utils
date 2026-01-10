@@ -134,6 +134,8 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
+    net-smtp (0.5.1)
+      net-protocol
     nio4r (2.5.8)
     nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -268,6 +270,7 @@ DEPENDENCIES
   globalize!
   money-rails
   net-imap (~> 0.4.11)
+  net-smtp
   peak_flow_utils!
   pry-rails
   rails (= 6.1.4.6)

@@ -16,7 +16,6 @@ PATH
       bigdecimal
       drb
       mutex_m
-      net-smtp
       rails (>= 5.0.0)
       service_pattern (>= 1.0.5)
 
@@ -279,6 +278,7 @@ DEPENDENCIES
   globalize!
   money-rails
   net-imap (~> 0.4.11)
+  net-smtp
   peak_flow_utils!
   pry-rails
   redis
