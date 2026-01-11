@@ -96,6 +96,9 @@ Metrics/MethodLength:
 Rails/FindEach:
   Enabled: false
 
+Rails/EnvLocal:
+  Enabled: false
+
 Rails/UnknownEnv:
   Environments:
     - local

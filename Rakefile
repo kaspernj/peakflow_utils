@@ -22,9 +22,7 @@ load "rails/tasks/statistics.rake"
 
 require "bundler/gem_tasks"
 
-begin
+if Rails.env.development? || Rails.env.test?
   require "best_practice_project"
   BestPracticeProject.load_tasks
-rescue LoadError
-  # best_practice_project isn't installed in all bundles/environments.
 end

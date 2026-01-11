@@ -13,4 +13,4 @@
 - Require Logger in Rake tasks to avoid ActiveSupport LoggerThreadSafeLevel NameError.
 - Use Rails.env.local? in Rakefile to satisfy Rails/EnvLocal.
 - Allow local env in Rails/UnknownEnv RuboCop config.
-- Always load best_practice_project tasks when the gem is available.
+- Disable Rails/EnvLocal and restore development/test env check in Rakefile.
