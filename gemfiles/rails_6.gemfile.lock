@@ -90,6 +90,7 @@ GEM
     ast (2.4.3)
     auto_autoloader (0.0.5)
       string-cases
+    base64 (0.3.0)
     best_practice_project (0.0.12)
       auto_autoloader (>= 0.0.5)
     bigdecimal (4.0.1)
@@ -266,6 +267,7 @@ PLATFORMS
 
 DEPENDENCIES
   appraisal
+  base64
   best_practice_project
   globalize!
   money-rails

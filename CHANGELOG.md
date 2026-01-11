@@ -9,3 +9,4 @@
 - Add chained setup build to reuse Peakflow build container.
 - Require net/smtp in test setup to satisfy mail loading.
 - Allow notifier class helper to accept positional hash for older RSpec keyword handling.
+- Add base64 to test dependencies for Ruby 3.4 stdlib split.

@@ -274,6 +274,7 @@ PLATFORMS
 
 DEPENDENCIES
   appraisal
+  base64
   best_practice_project
   globalize!
   money-rails
