@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 group :development, :test do
   gem "appraisal"
-  gem "best_practice_project"
   gem "base64"
+  gem "best_practice_project"
   gem "globalize", git: "https://github.com/globalize/globalize.git"
   gem "money-rails"
   gem "net-imap", "~> 0.4.11"

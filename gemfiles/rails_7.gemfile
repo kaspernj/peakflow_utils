@@ -6,8 +6,8 @@ gem "rails", "7.0.2.2"
 
 group :development, :test do
   gem "appraisal"
-  gem "best_practice_project"
   gem "base64"
+  gem "best_practice_project"
   gem "globalize", git: "https://github.com/globalize/globalize.git"
   gem "money-rails"
   gem "net-imap", "~> 0.4.11"
