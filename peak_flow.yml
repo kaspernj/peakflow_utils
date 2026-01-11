@@ -40,7 +40,7 @@ builds:
           - bundle exec appraisal "rails 7" rspec
       build_5:
         environment:
-          RUBY_VERSION: 3.0.3
+          RUBY_VERSION: 3.3.10
         name: Ruby 3.3.10, Rails 7
         script:
           - bundle
