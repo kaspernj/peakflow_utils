@@ -11,3 +11,7 @@
 - Allow notifier class helper to accept positional hash for older RSpec keyword handling.
 - Add base64 to test dependencies for Ruby 3.4 stdlib split.
 - Require Logger in Rake tasks to avoid ActiveSupport LoggerThreadSafeLevel NameError.
+- Use Rails.env.local? in Rakefile to satisfy Rails/EnvLocal.
+- Allow local env in Rails/UnknownEnv RuboCop config.
+- Disable Rails/EnvLocal and restore development/test env check in Rakefile.
+- Disable Rails/UnknownEnv in RuboCop config.
