@@ -100,8 +100,7 @@ Rails/EnvLocal:
   Enabled: false
 
 Rails/UnknownEnv:
-  Environments:
-    - local
+  Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false

@@ -14,3 +14,4 @@
 - Use Rails.env.local? in Rakefile to satisfy Rails/EnvLocal.
 - Allow local env in Rails/UnknownEnv RuboCop config.
 - Disable Rails/EnvLocal and restore development/test env check in Rakefile.
+- Disable Rails/UnknownEnv in RuboCop config.
