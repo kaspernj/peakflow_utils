@@ -15,3 +15,4 @@
 - Allow local env in Rails/UnknownEnv RuboCop config.
 - Disable Rails/EnvLocal and restore development/test env check in Rakefile.
 - Disable Rails/UnknownEnv in RuboCop config.
+- Use stderr output in dummy setup/update scripts to satisfy RSpec/Output.
