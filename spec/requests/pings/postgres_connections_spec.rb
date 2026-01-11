@@ -17,7 +17,7 @@ describe "peak flow utils - postgres connections" do
 
     get "/peak_flow_utils/pings/postgres_connections", headers: headers
 
-    result = JSON.parse(response.body)
+    result = response.parsed_body
     check_json_status = result.fetch("check_json_status")
     connections_count = result.fetch("postgres_connections_count")
 

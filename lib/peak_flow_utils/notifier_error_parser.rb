@@ -11,7 +11,7 @@ class PeakFlowUtils::NotifierErrorParser
 
   def detect_file_path_and_line_number
     backtrace.each do |trace|
-      match = trace.match(/^((.+)\.([A-z]{2,4})):(\d+)(:|$)/)
+      match = trace.match(/^((.+)\.([A-Za-z]{2,4})):(\d+)(:|$)/)
       next unless match
 
       file_path = match[1]

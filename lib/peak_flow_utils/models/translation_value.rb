@@ -1,7 +1,6 @@
 class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
   belongs_to :translation_key
 
-  validates :translation_key, presence: true
 
   delegate :key, to: :translation_key
 
@@ -10,7 +9,9 @@ class PeakFlowUtils::TranslationValue < PeakFlowUtils::ApplicationRecord
   end
 
   def handler_translation
-    @handler_translation ||= PeakFlowUtils::HandlerText
+    return @handler_translation if defined?(@handler_translation)
+
+    @handler_translation = PeakFlowUtils::HandlerText
       .find_by(translation_key_id: translation_key_id)
   end
 

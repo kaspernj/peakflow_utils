@@ -2,7 +2,7 @@ class PeakFlowUtils::FileHandler < PeakFlowUtils::ApplicationHandler
   def groups
     ArrayEnumerator.new do |yielder|
       erb_inspector.files.each do |file|
-        id = file.file_path.gsub(/[^A-z0-9]/, "_")
+        id = file.file_path.gsub(/[^A-Za-z0-9]/, "_")
 
         group = PeakFlowUtils::GroupService.new(
           id: id,

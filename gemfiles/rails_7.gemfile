@@ -5,15 +5,23 @@ source "https://rubygems.org"
 gem "rails", "7.0.2.2"
 
 group :development, :test do
+  gem "appraisal"
+  gem "base64"
   gem "best_practice_project"
   gem "globalize", git: "https://github.com/globalize/globalize.git"
   gem "money-rails"
+  gem "net-imap", "~> 0.4.11"
+  gem "net-smtp"
+  gem "pry-rails"
+  gem "redis"
   gem "rspec-rails"
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rspec"
+  gem "rubocop", "1.82.1"
+  gem "rubocop-performance", "1.26.1"
+  gem "rubocop-rails", "2.34.2"
+  gem "rubocop-rspec", "3.8.0"
+  gem "sidekiq"
   gem "sqlite3", platform: :ruby
+  gem "tzinfo-data"
 end
 
 gemspec path: "../"

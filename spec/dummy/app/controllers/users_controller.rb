@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   def new; end
 
+  def edit; end
+
   def create
     if @user.save
       flash[:notice] = t(".user_was_created")
@@ -18,8 +20,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params)

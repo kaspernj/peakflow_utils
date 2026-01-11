@@ -6,7 +6,7 @@ class PeakFlowUtils::Group < PeakFlowUtils::ApplicationRecord
   has_many :handler_translations, dependent: :destroy
   has_many :translation_keys, dependent: :destroy
 
-  validates :name, :handler, presence: true
+  validates :name, presence: true
 
   def at_handler
     @at_handler ||= handler.at_handler

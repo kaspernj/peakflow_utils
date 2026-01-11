@@ -1,0 +1,12 @@
+- Pin net-imap to ~> 0.4.11 to keep appraisal bundles compatible with Ruby < 3.2.
+- Use delegate for ApplicationMigration#connection to satisfy RuboCop.
+- Replace delegate with explicit ApplicationMigration.connection to avoid argument errors.
+- Disable Gemspec/RequiredRubyVersion for the gemspec required_ruby_version line.
+- Add net-smtp dependency so mail can load under Ruby 3.3+.
+- Ensure ApplicationMigration provides both instance and class connection methods.
+- Limit net-smtp to development/test dependencies.
+- Use explicit keyword forwarding for notifier class/instance helper methods.
+- Add chained setup build to reuse Peakflow build container.
+- Require net/smtp in test setup to satisfy mail loading.
+- Allow notifier class helper to accept positional hash for older RSpec keyword handling.
+- Add base64 to test dependencies for Ruby 3.4 stdlib split.

@@ -6,7 +6,7 @@ class PeakFlowUtils::ModelInspector
   # Yields a model-inspector for each model found in the application.
   def self.model_classes
     # Make sure all models are loaded.
-    load_models
+    load_models!
 
     @scanned = {}
     @yielded = {}
@@ -92,20 +92,20 @@ class PeakFlowUtils::ModelInspector
     to_s
   end
 
-  def self.find_subclasses(clazz, &blk)
+  def self.find_subclasses(clazz, &)
     return if @scanned[clazz.name]
 
     @scanned[clazz.name] = true
 
     clazz.subclasses.each do |subclass|
-      blk.call ::PeakFlowUtils::ModelInspector.new(subclass)
-      find_subclasses(subclass, &blk)
+      yield ::PeakFlowUtils::ModelInspector.new(subclass)
+      find_subclasses(subclass, &)
     end
   end
 
   # Preloads all models for Rails app and all engines (if they aren't loaded, then they cant be inspected).
-  def self.load_models
-    return false if PeakFlowUtils::ModelInspector.models_loaded
+  def self.load_models!
+    return if PeakFlowUtils::ModelInspector.models_loaded
 
     PeakFlowUtils::ModelInspector.models_loaded = true
 
@@ -113,8 +113,6 @@ class PeakFlowUtils::ModelInspector
     engines.each do |engine|
       load_models_for(engine.root)
     end
-
-    true
   end
 
   def self.engines
@@ -123,7 +121,7 @@ class PeakFlowUtils::ModelInspector
 
   # Loads models for the given app-directory (Rails-root or engine).
   def self.load_models_for(root)
-    Dir.glob("#{root}/app/models/**/*.rb").sort.each do |model_path|
+    Dir.glob("#{root}/app/models/**/*.rb").each do |model_path|
       require model_path
     rescue StandardError => e
       warn "Could not load model in #{model_path}"
