@@ -22,7 +22,7 @@ load "rails/tasks/statistics.rake"
 
 require "bundler/gem_tasks"
 
-if Rails.env.development? || Rails.env.test?
+if Rails.env.local?
   require "best_practice_project"
   BestPracticeProject.load_tasks
 end
