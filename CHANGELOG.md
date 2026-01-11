@@ -10,3 +10,4 @@
 - Require net/smtp in test setup to satisfy mail loading.
 - Allow notifier class helper to accept positional hash for older RSpec keyword handling.
 - Add base64 to test dependencies for Ruby 3.4 stdlib split.
+- Require Logger in Rake tasks to avoid ActiveSupport LoggerThreadSafeLevel NameError.
