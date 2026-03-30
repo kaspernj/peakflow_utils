@@ -94,7 +94,8 @@ private
       )
     )
 
-    run!("git", "add", VERSION_FILE.to_s)
+    run!("bundle", "install")
+    run!("git", "add", VERSION_FILE.to_s, "Gemfile.lock")
   end
 
   def commit!(next_version)
