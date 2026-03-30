@@ -22,6 +22,8 @@ load "rails/tasks/statistics.rake"
 
 require "bundler/gem_tasks"
 
+load File.expand_path("lib/tasks/release.rake", __dir__)
+
 if Rails.env.development? || Rails.env.test?
   require "best_practice_project"
   BestPracticeProject.load_tasks
