@@ -49,9 +49,7 @@ Thread.class_eval do
 
   def self.inherited_local_vars_set(values)
     inherited_local_vars_mutex.synchronize do
-      current_vars = _inherited_local_vars
-      new_vars = PeakFlowUtils::DeepMerger.execute!(hashes: [current_vars, values])
-      Thread.current.instance_variable_set(:@_inherited_local_vars, new_vars)
+      _inherited_local_vars.merge!(values)
     end
   end
 end
