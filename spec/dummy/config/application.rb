@@ -17,7 +17,7 @@ require "peak_flow_utils"
 
 module Dummy; end
 
-class Dummy::Application < Rails::Application
+class Dummy::Application < Rails::Application # rubocop:disable Style/OneClassPerFile
   # Initialize configuration defaults for originally generated Rails version.
   if Gem.loaded_specs["rails"].version.to_s.start_with?("7.")
     config.load_defaults 7.0
