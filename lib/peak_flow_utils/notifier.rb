@@ -37,22 +37,18 @@ class PeakFlowUtils::Notifier
     random_id = ::SecureRandom.hex(16)
 
     ::PeakFlowUtils::Notifier.current.mutex.synchronize do
-      raise "'parameters' was nil?" if ::PeakFlowUtils::Notifier.current.parameters.value.nil?
+      current_parameters = ::PeakFlowUtils::Notifier.current.parameters.value
+      raise "'parameters' was nil?" if current_parameters.nil?
 
-      parameters_with = ::PeakFlowUtils::Notifier.current.parameters.value.clone
-      parameters_with[random_id] = parameters
-
-      ::PeakFlowUtils::Notifier.current.parameters.value = parameters_with
+      current_parameters[random_id] = parameters
     end
 
     begin
       yield
     ensure
       ::PeakFlowUtils::Notifier.current.mutex.synchronize do
-        parameters_without = ::PeakFlowUtils::Notifier.current.parameters.value.clone
-        parameters_without.delete(random_id)
-
-        ::PeakFlowUtils::Notifier.current.parameters.value = parameters_without
+        current_parameters = ::PeakFlowUtils::Notifier.current.parameters.value
+        current_parameters.delete(random_id)
       end
     end
   end
