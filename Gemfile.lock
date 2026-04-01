@@ -191,7 +191,7 @@ GEM
       date
       stringio
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -292,7 +292,7 @@ GEM
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     service_pattern (1.0.10)
-    sidekiq (8.1.1)
+    sidekiq (8.1.2)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
       logger (>= 1.7.0)
