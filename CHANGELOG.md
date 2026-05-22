@@ -1,3 +1,4 @@
+- Preserve scoped notifier parameters on errors that are reported after `with_parameters` blocks have unwound.
 - Pin net-imap to ~> 0.4.11 to keep appraisal bundles compatible with Ruby < 3.2.
 - Use delegate for ApplicationMigration#connection to satisfy RuboCop.
 - Replace delegate with explicit ApplicationMigration.connection to avoid argument errors.

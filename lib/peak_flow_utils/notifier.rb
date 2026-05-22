@@ -3,6 +3,8 @@ class PeakFlowUtils::Notifier
   class NotConfiguredError < RuntimeError; end
   class NotifyMessageError < RuntimeError; end
 
+  CAPTURED_PARAMETERS_INSTANCE_VARIABLE = :@peak_flow_utils_captured_parameters
+
   attr_reader :auth_token, :mutex, :parameters
 
   def self.configure(auth_token:)
@@ -45,6 +47,9 @@ class PeakFlowUtils::Notifier
 
     begin
       yield
+    rescue StandardError => e
+      ::PeakFlowUtils::Notifier.current.capture_parameters_for_error(e)
+      raise
     ensure
       ::PeakFlowUtils::Notifier.current.mutex.synchronize do
         current_parameters = ::PeakFlowUtils::Notifier.current.parameters.value
@@ -60,8 +65,22 @@ class PeakFlowUtils::Notifier
     @parameters = ::PeakFlowUtils::InheritedLocalVar.new({})
   end
 
-  def current_parameters(parameters: nil)
+  def capture_parameters_for_error(error)
+    return if error.instance_variable_defined?(CAPTURED_PARAMETERS_INSTANCE_VARIABLE)
+
+    error.instance_variable_set(CAPTURED_PARAMETERS_INSTANCE_VARIABLE, current_parameters)
+  end
+
+  def captured_parameters_for_error(error)
+    return unless error&.instance_variable_defined?(CAPTURED_PARAMETERS_INSTANCE_VARIABLE)
+
+    error.instance_variable_get(CAPTURED_PARAMETERS_INSTANCE_VARIABLE)
+  end
+
+  def current_parameters(error: nil, parameters: nil)
     hashes = current_parameters_hashes
+    captured_parameters = captured_parameters_for_error(error)
+    hashes << captured_parameters if captured_parameters
     hashes << parameters if parameters
 
     ::PeakFlowUtils::DeepMerger.execute!(hashes: hashes)
@@ -90,7 +109,7 @@ class PeakFlowUtils::Notifier
       error: error
     )
 
-    merged_parameters = current_parameters(parameters: parameters)
+    merged_parameters = current_parameters(error: error, parameters: parameters)
 
     uri = URI("https://www.peakflow.io/errors/reports")
 
