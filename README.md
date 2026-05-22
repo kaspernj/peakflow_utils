@@ -32,6 +32,8 @@ PeakFlowUtils::Notifier.configure(auth_token: "your-token")
 PeakFlowUtils::Notifier.notify(error: error)
 ```
 
+Errors that escape a `PeakFlowUtils::Notifier.with_parameters` block keep a snapshot of the scoped parameters. Later framework handlers, such as Sidekiq error handlers, can report the same error after the block has unwound and still include the captured context.
+
 ### Reporting Rails errors
 
 Add this to `config/peakflow.rb`:

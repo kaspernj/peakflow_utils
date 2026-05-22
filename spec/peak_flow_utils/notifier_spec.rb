@@ -144,6 +144,99 @@ describe PeakFlowUtils::Notifier do
       expect(backtrace).not_to be_empty
     end
 
+    it "keeps scoped parameters when an error is notified after the scope unwound" do
+      captured_body = nil
+
+      expect_any_instance_of(Net::HTTP).to receive(:request) do |_https, request|
+        captured_body = JSON.parse(request.body)
+
+        instance_double(
+          Net::HTTPResponse,
+          body: JSON.generate(
+            bug_report_id: 451,
+            bug_report_instance_id: 452,
+            project_id: 453,
+            project_slug: "test-project",
+            url: "https://www.peakflow.io/something"
+          ),
+          code: "200"
+        )
+      end
+
+      error = nil
+
+      begin
+        PeakFlowUtils::Notifier.with_parameters(notification: {notification_id: "notification-1"}) do
+          PeakFlowUtils::Notifier.with_parameters(content_parser: {template_name: "Email template body"}) do
+            raise "late notify"
+          end
+        end
+      rescue => e # rubocop:disable Style/RescueStandardError
+        error = e
+      end
+
+      expect(notifier.current_parameters).to eq({})
+
+      notifier.notify(error:)
+
+      expect(captured_body.fetch("error").fetch("parameters")).to eq(
+        "content_parser" => {
+          "template_name" => "Email template body"
+        },
+        "extra_param" => "test",
+        "notification" => {
+          "notification_id" => "notification-1"
+        }
+      )
+    end
+
+    it "lets explicit notify parameters override captured error parameters" do
+      captured_body = nil
+
+      expect_any_instance_of(Net::HTTP).to receive(:request) do |_https, request|
+        captured_body = JSON.parse(request.body)
+
+        instance_double(
+          Net::HTTPResponse,
+          body: JSON.generate(
+            bug_report_id: 451,
+            bug_report_instance_id: 452,
+            project_id: 453,
+            project_slug: "test-project",
+            url: "https://www.peakflow.io/something"
+          ),
+          code: "200"
+        )
+      end
+
+      error = nil
+
+      begin
+        PeakFlowUtils::Notifier.with_parameters(content_parser: {result_keys: ["old"], template_name: "Captured template"}) do
+          raise "late notify"
+        end
+      rescue => e # rubocop:disable Style/RescueStandardError
+        error = e
+      end
+
+      notifier.notify(
+        error:,
+        parameters: {
+          content_parser: {
+            template_name: "Explicit template"
+          }
+        }
+      )
+
+      expect(captured_body.fetch("error").fetch("parameters")).to eq(
+        "content_parser" => {
+          "result_keys" => ["old"],
+          "template_name" => "Explicit template"
+        },
+        "extra_param" => "test"
+      )
+    end
+
     it "#notify_message" do
       expect(PeakFlowUtils::Notifier.current).to receive(:notify) do |args|
         error = args.fetch(:error)
