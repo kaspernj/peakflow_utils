@@ -14,7 +14,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "rubocop", "1.86.0"
   gem "rubocop-performance", "1.26.1"
-  gem "rubocop-rails", "2.34.3"
+  gem "rubocop-rails", "2.35.3"
   gem "rubocop-rspec", "3.9.0"
   gem "sidekiq"
   gem "sqlite3", platform: :ruby
