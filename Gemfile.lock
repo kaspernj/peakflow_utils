@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/globalize/globalize.git
-  revision: 38e5fe5aebb43fbef54f926b05a57b4f6ce72753
+  revision: 500f99de9344f95ad70a6add1febb45c875cc581
   specs:
     globalize (7.1.3)
       activemodel (>= 7.0, < 8.2)
@@ -113,7 +113,7 @@ GEM
     builder (3.3.0)
     cgi (0.5.1)
     coderay (1.1.3)
-    concurrent-ruby (1.3.7)
+    concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
     crass (1.0.6)
     date (3.5.1)
