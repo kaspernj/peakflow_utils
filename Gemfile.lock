@@ -286,9 +286,10 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
-    rubocop-rspec (3.9.0)
+    rubocop-rspec (3.10.2)
       lint_roller (~> 1.1)
-      rubocop (~> 1.81)
+      regexp_parser (>= 2.0)
+      rubocop (~> 1.86, >= 1.86.2)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     service_pattern (1.0.10)
@@ -337,7 +338,7 @@ DEPENDENCIES
   rubocop (= 1.88.2)
   rubocop-performance (= 1.26.1)
   rubocop-rails (= 2.36.0)
-  rubocop-rspec (= 3.9.0)
+  rubocop-rspec (= 3.10.2)
   sidekiq
   sqlite3
   tzinfo-data
