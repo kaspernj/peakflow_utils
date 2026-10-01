@@ -160,12 +160,12 @@ GEM
       money (~> 7.0)
       railties (>= 7.0)
     mutex_m (0.3.0)
-    net-imap (0.6.6)
+    net-imap (0.6.7)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.2)
+    net-protocol (0.4.0)
       timeout
     net-smtp (0.5.1)
       net-protocol
@@ -329,7 +329,7 @@ DEPENDENCIES
   best_practice_project
   globalize!
   money-rails
-  net-imap (~> 0.6.6)
+  net-imap (~> 0.6.7)
   net-smtp
   peak_flow_utils!
   pry-rails

@@ -7,7 +7,7 @@ group :development, :test do
   gem "best_practice_project"
   gem "globalize", git: "https://github.com/globalize/globalize.git"
   gem "money-rails"
-  gem "net-imap", "~> 0.6.6"
+  gem "net-imap", "~> 0.6.7"
   gem "net-smtp"
   gem "pry-rails"
   gem "redis"
